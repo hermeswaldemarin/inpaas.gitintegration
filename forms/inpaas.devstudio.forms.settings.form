@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<form anonymous="false" entity="CORE_MODULE" finalVersion="false" key="inpaas.devstudio.forms.settings" name="Module Settings" title="Module Settings" version="0.0" xmlns:ns2="br.com.inpaas.model.entity">
+    <filters>
+        <filter default="false" name="Todos">
+            <criterias/>
+            <ordination/>
+        </filter>
+    </filters>
+    <libs>
+        <lib all-forms="false" key="libs.codemirror"/>
+        <lib all-forms="true" key="libs.fonts.opensans"/>
+    </libs>
+    <source-css>body.page-content {
+    padding: 0px;
+}
+
+.codetext { 
+  	font-family: monospace;
+	width: 100%;
+  	min-height: 90px;
+}</source-css>
+    <source-js>(function($) {
+ 
+	if (window.CodeMirror) {
+        var cms = {};   
+        var cmmodes = ["javascript", "css"];
+
+        /* Initializes CodeMirror for JavaScript/CSS/HTML editing */
+        $(".codetext").each(function(index, el) {
+            var cm = CodeMirror.fromTextArea(el, {
+                lineNumbers: true,
+                matchBrackets: true,
+                mode: cmmodes[index]
+            });
+
+            /* Sets the CodeMirror window size (width, height) */
+            cm.setSize(null, "100%");
+
+            cms[el.id] = cm;
+        });
+	}
+  
+	$("form").on("click", "#btn-save", function(e) {
+		cms["text-js"].save();
+    	cms["text-css"].save();
+    
+    	window.dynaform.save( $("form")[0], {element : $(this)});
+	});
+  
+})(jQuery);</source-js>
+</form>
