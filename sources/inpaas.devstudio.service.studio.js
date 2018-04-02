@@ -1,3 +1,15 @@
+/**
+ * Auto-generated comment stub
+ *
+  * @inpaas.key inpaas.devstudio.service.studio
+ * @inpaas.name StudioService
+ * @inpaas.version 0.8
+ * @inpaas.type patterntype.businessdelegate
+ * @inpaas.engine Nashorn
+ * @inpaas.anonymous false
+ * @inpaas.final false
+*/
+
 /*
  * StudioService
  * inpaas.devstudio.service.studio
@@ -130,20 +142,19 @@
     }
 
   	function fn_set_source(id, data) {
-		var ret = withMethods(require("inpaas.devstudio.dao.source").set(id, data));
-      
+		var obj = withMethods(require("inpaas.devstudio.dao.source").set(id, data));
+		logging.error("fn_set_source {} teste");      
       	var PackageManagerBusinessDelegate = Java.type("br.com.inpaas.app.packer.PackageManagerBusinessDelegate");
-        var packageManagerBd = new PackageManagerBusinessDelegate(scriptContext);      
+        var packageManagerBd = new PackageManagerBusinessDelegate(scriptContext);  
+      	var fileData = packageManagerBd.getPackageFile(id, "SOURCE"); 
       
-      	var fileData = packageManagerBd.getPackageFile(id);          
-        
-  		logging.error("fn_set_source", fileData);
-      	/*
+      	logging.error("fn_set_source {} ");
+      
       	var data = require("inpaas.http.client").
 			post("http://localhost:8181/event-procucer/source-control/push", {
                 "fileName": fileData.name,
                 "sourceType": "SOURCE",
-                "fileContent": fileData.data,
+                "fileContent": fileData.getDataAsString(),
                 "comment": "Comentário",
                 "adminUsername": "hermeswaldemarin",
                 "adminPassword": "hwnwal@830504",
@@ -152,11 +163,8 @@
                 "authorEmail": "hermes@touchpoints.com",
                 "branchName" : "master"
             });
-      	
-        */
       
-      	return ret;
-
+      return obj;
     }
     
     function fn_remove_source(id) {
