@@ -3,7 +3,7 @@
  *
   * @inpaas.key inpaas.devstudio.dynaform.studio
  * @inpaas.name StudioFormImpl
- * @inpaas.version 0.12
+ * @inpaas.version 0.14
  * @inpaas.type patterntype.form
  * @inpaas.engine Nashorn
  * @inpaas.anonymous false
@@ -42,7 +42,7 @@
           
             var PackageManagerBusinessDelegate = Java.type("br.com.inpaas.app.packer.PackageManagerBusinessDelegate");
             var packageManagerBd = new PackageManagerBusinessDelegate(scriptContext);  
-            var fileData = packageManagerBd.getPackageFile(data.id_formulario); 
+            var fileData = packageManagerBd.getPackageFile(data.id_formulario, "FORM" ); 
           
           	var data = require("inpaas.http.client").
 			post("http://localhost:8181/event-procucer/source-control/push", {
