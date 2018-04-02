@@ -47,7 +47,7 @@ body.inpaas-content {
     <source-js>dynaform.onload(function(scope) {
   
     if (window.CodeMirror) {
-		  
+		   
         /* Initializes CodeMirror for JavaScript/CSS/HTML editing */
         $(".codetext").each(function(index, el) {
      

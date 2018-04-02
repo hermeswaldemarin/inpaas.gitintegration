@@ -3,7 +3,7 @@
  *
   * @inpaas.key inpaas.devstudio.dynaform.studio
  * @inpaas.name StudioFormImpl
- * @inpaas.version 0.18
+ * @inpaas.version 0.19
  * @inpaas.type patterntype.form
  * @inpaas.engine Nashorn
  * @inpaas.anonymous false
@@ -65,7 +65,7 @@
           
            
           
-          return data;
+          //return data;
         }
     };
 
