@@ -1,6 +1,6 @@
 (function (root, factory) {
   'use strict';
- 
+  
   if (typeof define === 'function' && define.amd) {
     define(['angular'], factory);
   } else if (typeof exports === 'object') {
