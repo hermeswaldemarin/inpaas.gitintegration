@@ -3,7 +3,7 @@
  *
   * @inpaas.key inpaas.devstudio.dynaform.studio
  * @inpaas.name StudioFormImpl
- * @inpaas.version 0.14
+ * @inpaas.version 0.15
  * @inpaas.type patterntype.form
  * @inpaas.engine Nashorn
  * @inpaas.anonymous false
@@ -38,27 +38,33 @@
 			formBd.delete(id);
         },
         afterSet: function(data){
-        	logging.error("StudioFormImpl::afterSet::data");  
+        	
           
-            var PackageManagerBusinessDelegate = Java.type("br.com.inpaas.app.packer.PackageManagerBusinessDelegate");
-            var packageManagerBd = new PackageManagerBusinessDelegate(scriptContext);  
-            var fileData = packageManagerBd.getPackageFile(data.id_formulario, "FORM" ); 
+          try{
+          		var PackageManagerBusinessDelegate = Java.type("br.com.inpaas.app.packer.PackageManagerBusinessDelegate");
+                var packageManagerBd = new PackageManagerBusinessDelegate(scriptContext);  
+                var fileData = packageManagerBd.getPackageFile(data.id_formulario, "FORM" ); 
+
+                var data = require("inpaas.http.client").
+                post("http://localhost:8181/event-procucer/source-control/push", {
+                    "fileName": fileData.name,
+                    "sourceType": "SOURCE",
+                    "fileContent": fileData.getDataAsString(),
+                    "comment": "Comentário",
+                    "adminUsername": "hermeswaldemarin",
+                    "adminPassword": "hwnwal@830504",
+                    "gitRepo": "https://github.com/hermeswaldemarin/inpaas.gitintegration.git",
+                    "authorName": data.updatedBy,
+                    "authorEmail": "hermes@touchpoints.com",
+                    "branchName" : "master"
+                });  
+          }catch(e){
+            logging.error("StudioFormImpl::afterSet::error", e);  
+          }
           
-          	var data = require("inpaas.http.client").
-			post("http://localhost:8181/event-procucer/source-control/push", {
-                "fileName": fileData.name,
-                "sourceType": "SOURCE",
-                "fileContent": fileData.getDataAsString(),
-                "comment": "Comentário",
-                "adminUsername": "hermeswaldemarin",
-                "adminPassword": "hwnwal@830504",
-                "gitRepo": "https://github.com/hermeswaldemarin/inpaas.gitintegration.git",
-                "authorName": data.updatedBy,
-                "authorEmail": "hermes@touchpoints.com",
-                "branchName" : "master"
-            });
+           
           
-          	return data;
+          return data;
         }
     };
 
