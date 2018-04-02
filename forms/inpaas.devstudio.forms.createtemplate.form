@@ -60,7 +60,7 @@ body.inpaas-content {
           	/* Sets the CodeMirror window size (width, height) */
           	window.editor.setSize(null, "100%");
         });
-    }  
+    }   
 	
   	$(scope).on("click", ".btn-save", function(e) {
       	e.preventDefault();
