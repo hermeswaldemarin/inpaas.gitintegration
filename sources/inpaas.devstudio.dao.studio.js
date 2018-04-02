@@ -3,7 +3,7 @@
  *
   * @inpaas.key inpaas.devstudio.dao.studio
  * @inpaas.name StudioDao
- * @inpaas.version 0.12
+ * @inpaas.version 0.13
  * @inpaas.type patterntype.businessdelegate
  * @inpaas.engine Nashorn
  * @inpaas.anonymous false
@@ -101,7 +101,7 @@
   
   	function fn_get_script(sourceId) {
       	var sourceData;
-
+ 
       	if (!isNaN(sourceId)) {
       		sourceData = bd.getDao("CORE_PATTERN").findByPrimaryKey(sourceId);
         } else {
