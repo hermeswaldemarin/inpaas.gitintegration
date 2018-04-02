@@ -11,7 +11,7 @@
     </libs>
     <source-html>&lt;aside id="aside-container"&gt;
                 &lt;div id="aside"&gt; 
-                    &lt;div class="nano"&gt;
+                    &lt;div class="nano"&gt; 
                         &lt;div class="nano-content" tabindex="0"&gt;
                             
                             &lt;!--Nav tabs--&gt;
