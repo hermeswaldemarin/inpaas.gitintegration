@@ -3,7 +3,7 @@
  *
   * @inpaas.key inpaas.devstudio.dynaform.studio
  * @inpaas.name StudioFormImpl
- * @inpaas.version 0.22
+ * @inpaas.version 0.23
  * @inpaas.type patterntype.form
  * @inpaas.engine Nashorn
  * @inpaas.anonymous false
@@ -39,7 +39,6 @@
         },
         afterSet: function(data){
         	
-          
           try{
             	logging.error("StudioFormImpl::afterSet::scriptContext: " + scriptContext);  
           		var PackageManagerBusinessDelegate = Java.type("br.com.inpaas.app.packer.PackageManagerBusinessDelegate");
