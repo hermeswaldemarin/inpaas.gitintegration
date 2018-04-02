@@ -3,7 +3,7 @@
  *
   * @inpaas.key inpaas.devstudio.dynaform.studio
  * @inpaas.name StudioFormImpl
- * @inpaas.version 0.2
+ * @inpaas.version 0.3
  * @inpaas.type patterntype.form
  * @inpaas.engine Nashorn
  * @inpaas.anonymous false
@@ -18,10 +18,7 @@
   
     var DynaFormBusinessDelegate = Java.extend(Java.type("br.com.inpaas.forms.businessdelegate.DynaFormBusinessDelegate")); 
 
-    var instance = new DynaFormBusinessDelegate(scriptContext, form) 
-    	afterSet: function(data){
-        	logging.info("StudioFormImpl::afterSet::data", data);	  
-        },
+    var instance = new DynaFormBusinessDelegate(scriptContext, form) {
     	get: function(id) {
 			
 			var app = require("inpaas.core.entity.dao").getDao("CORE_APPLICATION").filter("id_formulario").equalsTo(id).find("SELECT CORE_APPLICATION.DS_KEY, CORE_APPLICATION.DO_DEVELOPER FROM CORE_APPLICATION INNER JOIN CORE_MODULE ON (CORE_MODULE.ID_APPLICATION = CORE_APPLICATION.ID_APPLICATION) INNER JOIN FORMULARIO ON (FORMULARIO.ID_MODULE = CORE_MODULE.ID_MODULE) WHERE ID_FORMULARIO = #id_formulario# ").first();
@@ -39,6 +36,9 @@
         delete : function(id) {
 			var formBd = new FormBusinessDelegate(scriptContext);
 			formBd.delete(id);
+        },
+        afterSet: function(data){
+        	logging.info("StudioFormImpl::afterSet::data", data);	  
         }
     };
 
