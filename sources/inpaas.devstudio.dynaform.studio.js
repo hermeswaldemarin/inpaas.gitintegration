@@ -3,7 +3,7 @@
  *
   * @inpaas.key inpaas.devstudio.dynaform.studio
  * @inpaas.name StudioFormImpl
- * @inpaas.version 0.24
+ * @inpaas.version 0.25
  * @inpaas.type patterntype.form
  * @inpaas.engine Nashorn
  * @inpaas.anonymous false
@@ -54,8 +54,8 @@
                     "adminUsername": "hermeswaldemarin",
                     "adminPassword": "hwnwal@830504",
                     "gitRepo": "https://github.com/hermeswaldemarin/inpaas.gitintegration.git",
-                    "authorName": data.updatedBy,
-                    "authorEmail": "hermes@touchpoints.com",
+                    "authorName": scriptContext.getUserInfo().login,
+                    "authorEmail": scriptContext.getUserInfo().userEmail,
                     "branchName" : "master"
                 });  
           }catch(e){
