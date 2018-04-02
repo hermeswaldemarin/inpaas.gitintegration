@@ -50,7 +50,7 @@ body.inpaas-content {
 		   
         /* Initializes CodeMirror for JavaScript/CSS/HTML editing */
         $(".codetext").each(function(index, el) {
-     
+      
           	window.editor = CodeMirror.fromTextArea(el, {
             	lineNumbers: true,
             	matchBrackets: true,
