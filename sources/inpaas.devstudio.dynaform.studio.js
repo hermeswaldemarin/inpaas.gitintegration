@@ -3,7 +3,7 @@
  *
   * @inpaas.key inpaas.devstudio.dynaform.studio
  * @inpaas.name StudioFormImpl
- * @inpaas.version 0.9
+ * @inpaas.version 0.1
  * @inpaas.type patterntype.form
  * @inpaas.engine Nashorn
  * @inpaas.anonymous false
@@ -38,7 +38,7 @@
 			formBd.delete(id);
         },
         afterSet: function(data){
-        	logging.error("StudioFormImpl::afterSet::data");  
+        	logging.error("StudioFormImpl::afterSet::data " + data);  
           	return data;
         }
     };
