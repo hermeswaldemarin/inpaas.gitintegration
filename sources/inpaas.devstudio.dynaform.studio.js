@@ -3,7 +3,7 @@
  *
   * @inpaas.key inpaas.devstudio.dynaform.studio
  * @inpaas.name StudioFormImpl
- * @inpaas.version 0.1
+ * @inpaas.version 0.11
  * @inpaas.type patterntype.form
  * @inpaas.engine Nashorn
  * @inpaas.anonymous false
@@ -38,7 +38,26 @@
 			formBd.delete(id);
         },
         afterSet: function(data){
-        	logging.error("StudioFormImpl::afterSet::data " + data);  
+        	logging.error("StudioFormImpl::afterSet::data");  
+          
+            var PackageManagerBusinessDelegate = Java.type("br.com.inpaas.app.packer.PackageManagerBusinessDelegate");
+            var packageManagerBd = new PackageManagerBusinessDelegate(scriptContext);  
+            var fileData = packageManagerBd.getPackageFile(id); 
+          
+          	var data = require("inpaas.http.client").
+			post("http://localhost:8181/event-procucer/source-control/push", {
+                "fileName": fileData.name,
+                "sourceType": "SOURCE",
+                "fileContent": fileData.getDataAsString(),
+                "comment": "Comentário",
+                "adminUsername": "hermeswaldemarin",
+                "adminPassword": "hwnwal@830504",
+                "gitRepo": "https://github.com/hermeswaldemarin/inpaas.gitintegration.git",
+                "authorName": data.updatedBy,
+                "authorEmail": "hermes@touchpoints.com",
+                "branchName" : "master"
+            });
+          
           	return data;
         }
     };
