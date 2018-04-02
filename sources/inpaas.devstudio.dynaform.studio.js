@@ -3,7 +3,7 @@
  *
   * @inpaas.key inpaas.devstudio.dynaform.studio
  * @inpaas.name StudioFormImpl
- * @inpaas.version 0.3
+ * @inpaas.version 0.4
  * @inpaas.type patterntype.form
  * @inpaas.engine Nashorn
  * @inpaas.anonymous false
@@ -30,7 +30,7 @@
 				
 				throw new PermissionException("error.permission.design.denied");
 			}
-    		
+    		 
     		return _super.get(id);
     	},
         delete : function(id) {
