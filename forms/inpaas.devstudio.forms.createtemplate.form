@@ -56,7 +56,7 @@ body.inpaas-content {
             	matchBrackets: true,
             	mode: "htmlmixed"
           	});
- 
+  
           	/* Sets the CodeMirror window size (width, height) */
           	window.editor.setSize(null, "100%");
         });
