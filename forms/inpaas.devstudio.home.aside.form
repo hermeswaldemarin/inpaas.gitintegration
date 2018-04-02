@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<form anonymous="false" finalVersion="false" key="inpaas.devstudio.home.aside" name="Development Studio - ASide" title="Development Studio - ASide" version="0.0" xmlns:ns2="br.com.inpaas.model.entity">
+    <filters>
+        <filter default="false" name="Todos">
+            <criterias/>
+            <ordination/>
+        </filter>
+    </filters>
+    <libs>
+        <lib all-forms="true" key="libs.fonts.opensans"/>
+    </libs>
+    <source-html>&lt;aside id="aside-container"&gt;
+                &lt;div id="aside"&gt; 
+                    &lt;div class="nano"&gt;
+                        &lt;div class="nano-content" tabindex="0"&gt;
+                            
+                            &lt;!--Nav tabs--&gt;
+                            &lt;!--================================--&gt;
+                            &lt;ul class="nav nav-tabs nav-justified"&gt;
+                                &lt;li class="active"&gt;
+                                    &lt;a href="#demo-asd-tab-1" data-toggle="tab"&gt;
+                                        &lt;i class="demo-pli-speech-bubble-7 icon-lg"&gt;&lt;/i&gt;
+                                    &lt;/a&gt;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    &lt;a href="#demo-asd-tab-2" data-toggle="tab"&gt;
+                                        &lt;i class="demo-pli-information icon-lg icon-fw"&gt;&lt;/i&gt; Report
+                                    &lt;/a&gt;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    &lt;a href="#demo-asd-tab-3" data-toggle="tab"&gt;
+                                        &lt;i class="demo-pli-wrench icon-lg icon-fw"&gt;&lt;/i&gt; Settings
+                                    &lt;/a&gt;
+                                &lt;/li&gt;
+                            &lt;/ul&gt;
+                            &lt;!--================================--&gt;
+                            &lt;!--End nav tabs--&gt;
+
+
+
+                            &lt;!-- Tabs Content --&gt;
+                            &lt;!--================================--&gt;
+                            &lt;div class="tab-content"&gt;
+
+                                &lt;!--First tab (Contact list)--&gt;
+                                &lt;!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--&gt;
+                                &lt;div class="tab-pane fade in active" id="demo-asd-tab-1"&gt;
+                                    &lt;p class="pad-all text-main text-sm text-uppercase text-bold"&gt;
+                                        &lt;span class="pull-right badge badge-warning"&gt;3&lt;/span&gt; Family
+                                    &lt;/p&gt;
+
+                                    &lt;!--Family--&gt;
+                                    &lt;div class="list-group bg-trans"&gt;
+							            &lt;a href="#" class="list-group-item"&gt;
+							                &lt;div class="media-left pos-rel"&gt;
+							                    &lt;img class="img-circle img-xs" src="//static.inpaas.com/assets/nifty-v2.9/img/profile-photos/2.png" alt="Profile Picture"&gt;
+												&lt;i class="badge badge-success badge-stat badge-icon pull-left"&gt;&lt;/i&gt;
+							                &lt;/div&gt;
+							                &lt;div class="media-body"&gt;
+							                    &lt;p class="mar-no text-main"&gt;Stephen Tran&lt;/p&gt;
+							                    &lt;small class="text-muteds"&gt;Availabe&lt;/small&gt;
+							                &lt;/div&gt;
+							            &lt;/a&gt;
+							            &lt;a href="#" class="list-group-item"&gt;
+							                &lt;div class="media-left pos-rel"&gt;
+							                    &lt;img class="img-circle img-xs" src="//static.inpaas.com/assets/nifty-v2.9/img/profile-photos/7.png" alt="Profile Picture"&gt;
+							                &lt;/div&gt;
+							                &lt;div class="media-body"&gt;
+							                    &lt;p class="mar-no text-main"&gt;Brittany Meyer&lt;/p&gt;
+							                    &lt;small class="text-muteds"&gt;I think so&lt;/small&gt;
+							                &lt;/div&gt;
+							            &lt;/a&gt;
+							            &lt;a href="#" class="list-group-item"&gt;
+							                &lt;div class="media-left pos-rel"&gt;
+							                    &lt;img class="img-circle img-xs" src="//static.inpaas.com/assets/nifty-v2.9/img/profile-photos/1.png" alt="Profile Picture"&gt;
+												&lt;i class="badge badge-info badge-stat badge-icon pull-left"&gt;&lt;/i&gt;
+							                &lt;/div&gt;
+							                &lt;div class="media-body"&gt;
+							                    &lt;p class="mar-no text-main"&gt;Jack George&lt;/p&gt;
+							                    &lt;small class="text-muteds"&gt;Last Seen 2 hours ago&lt;/small&gt;
+							                &lt;/div&gt;
+							            &lt;/a&gt;
+							            &lt;a href="#" class="list-group-item"&gt;
+							                &lt;div class="media-left pos-rel"&gt;
+							                    &lt;img class="img-circle img-xs" src="//static.inpaas.com/assets/nifty-v2.9/img/profile-photos/4.png" alt="Profile Picture"&gt;
+							                &lt;/div&gt;
+							                &lt;div class="media-body"&gt;
+							                    &lt;p class="mar-no text-main"&gt;Donald Brown&lt;/p&gt;
+							                    &lt;small class="text-muteds"&gt;Lorem ipsum dolor sit amet.&lt;/small&gt;
+							                &lt;/div&gt;
+							            &lt;/a&gt;
+							            &lt;a href="#" class="list-group-item"&gt;
+							                &lt;div class="media-left pos-rel"&gt;
+							                    &lt;img class="img-circle img-xs" src="//static.inpaas.com/assets/nifty-v2.9/img/profile-photos/8.png" alt="Profile Picture"&gt;
+												&lt;i class="badge badge-warning badge-stat badge-icon pull-left"&gt;&lt;/i&gt;
+							                &lt;/div&gt;
+							                &lt;div class="media-body"&gt;
+							                    &lt;p class="mar-no text-main"&gt;Betty Murphy&lt;/p&gt;
+							                    &lt;small class="text-muteds"&gt;Idle&lt;/small&gt;
+							                &lt;/div&gt;
+							            &lt;/a&gt;
+							            &lt;a href="#" class="list-group-item"&gt;
+							                &lt;div class="media-left pos-rel"&gt;
+							                    &lt;img class="img-circle img-xs" src="//static.inpaas.com/assets/nifty-v2.9/img/profile-photos/9.png" alt="Profile Picture"&gt;
+												&lt;i class="badge badge-danger badge-stat badge-icon pull-left"&gt;&lt;/i&gt;
+							                &lt;/div&gt;
+							                &lt;div class="media-body"&gt;
+							                    &lt;p class="mar-no text-main"&gt;Samantha Reid&lt;/p&gt;
+							                    &lt;small class="text-muteds"&gt;Offline&lt;/small&gt;
+							                &lt;/div&gt;
+							            &lt;/a&gt;
+                                    &lt;/div&gt;
+
+                                    &lt;hr&gt;
+                                    &lt;p class="pad-all text-main text-sm text-uppercase text-bold"&gt;
+                                        &lt;span class="pull-right badge badge-success"&gt;Offline&lt;/span&gt; Friends
+                                    &lt;/p&gt;
+
+                                    &lt;!--Works--&gt;
+                                    &lt;div class="list-group bg-trans"&gt;
+                                        &lt;a href="#" class="list-group-item"&gt;
+                                            &lt;span class="badge badge-purple badge-icon badge-fw pull-left"&gt;&lt;/span&gt; Joey K. Greyson
+                                        &lt;/a&gt;
+                                        &lt;a href="#" class="list-group-item"&gt;
+                                            &lt;span class="badge badge-info badge-icon badge-fw pull-left"&gt;&lt;/span&gt; Andrea Branden
+                                        &lt;/a&gt;
+                                        &lt;a href="#" class="list-group-item"&gt;
+                                            &lt;span class="badge badge-success badge-icon badge-fw pull-left"&gt;&lt;/span&gt; Johny Juan
+                                        &lt;/a&gt;
+                                        &lt;a href="#" class="list-group-item"&gt;
+                                            &lt;span class="badge badge-danger badge-icon badge-fw pull-left"&gt;&lt;/span&gt; Susan Sun
+                                        &lt;/a&gt;
+                                    &lt;/div&gt;
+
+
+                                    &lt;hr&gt;
+                                    &lt;p class="pad-all text-main text-sm text-uppercase text-bold"&gt;News&lt;/p&gt;
+
+                                    &lt;div class="pad-hor"&gt;
+                                        &lt;p&gt;Lorem ipsum dolor sit amet, consectetuer
+                                            &lt;a data-title="45%" class="add-tooltip text-semibold text-main" href="#" data-original-title="" title=""&gt;adipiscing elit&lt;/a&gt;, sed diam nonummy nibh. Lorem ipsum dolor sit amet.
+                                        &lt;/p&gt;
+                                        &lt;small&gt;&lt;em&gt;Last Update : Des 12, 2014&lt;/em&gt;&lt;/small&gt;
+                                    &lt;/div&gt;
+
+
+                                &lt;/div&gt;
+                                &lt;!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--&gt;
+                                &lt;!--End first tab (Contact list)--&gt;
+
+
+                                &lt;!--Second tab (Custom layout)--&gt;
+                                &lt;!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--&gt;
+                                &lt;div class="tab-pane fade" id="demo-asd-tab-2"&gt;
+
+                                    &lt;!--Monthly billing--&gt;
+                                    &lt;div class="pad-all"&gt;
+                                        &lt;p class="pad-ver text-main text-sm text-uppercase text-bold"&gt;Billing &amp;amp; reports&lt;/p&gt;
+                                        &lt;p&gt;Get &lt;strong class="text-main"&gt;$5.00&lt;/strong&gt; off your next bill by making sure your full payment reaches us before August 5, 2018.&lt;/p&gt;
+                                    &lt;/div&gt;
+                                    &lt;hr class="new-section-xs"&gt;
+                                    &lt;div class="pad-all"&gt;
+                                        &lt;span class="pad-ver text-main text-sm text-uppercase text-bold"&gt;Amount Due On&lt;/span&gt;
+                                        &lt;p class="text-sm"&gt;August 17, 2018&lt;/p&gt;
+                                        &lt;p class="text-2x text-thin text-main"&gt;$83.09&lt;/p&gt;
+                                        &lt;button class="btn btn-block btn-success mar-top"&gt;Pay Now&lt;/button&gt;
+                                    &lt;/div&gt;
+
+
+                                    &lt;hr&gt;
+
+                                    &lt;p class="pad-all text-main text-sm text-uppercase text-bold"&gt;Additional Actions&lt;/p&gt;
+
+                                    &lt;!--Simple Menu--&gt;
+                                    &lt;div class="list-group bg-trans"&gt;
+                                        &lt;a href="#" class="list-group-item"&gt;&lt;i class="demo-pli-information icon-lg icon-fw"&gt;&lt;/i&gt; Service Information&lt;/a&gt;
+                                        &lt;a href="#" class="list-group-item"&gt;&lt;i class="demo-pli-mine icon-lg icon-fw"&gt;&lt;/i&gt; Usage Profile&lt;/a&gt;
+                                        &lt;a href="#" class="list-group-item"&gt;&lt;span class="label label-info pull-right"&gt;New&lt;/span&gt;&lt;i class="demo-pli-credit-card-2 icon-lg icon-fw"&gt;&lt;/i&gt; Payment Options&lt;/a&gt;
+                                        &lt;a href="#" class="list-group-item"&gt;&lt;i class="demo-pli-support icon-lg icon-fw"&gt;&lt;/i&gt; Message Center&lt;/a&gt;
+                                    &lt;/div&gt;
+
+
+                                    &lt;hr&gt;
+
+                                    &lt;div class="text-center"&gt;
+                                        &lt;div&gt;&lt;i class="demo-pli-old-telephone icon-3x"&gt;&lt;/i&gt;&lt;/div&gt;
+                                        Questions?
+                                        &lt;p class="text-lg text-semibold text-main"&gt; (415) 234-53454 &lt;/p&gt;
+                                        &lt;small&gt;&lt;em&gt;We are here 24/7&lt;/em&gt;&lt;/small&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;!--End second tab (Custom layout)--&gt;
+                                &lt;!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--&gt;
+
+
+                                &lt;!--Third tab (Settings)--&gt;
+                                &lt;!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--&gt;
+                                &lt;div class="tab-pane fade" id="demo-asd-tab-3"&gt;
+                                    &lt;ul class="list-group bg-trans"&gt;
+                                        &lt;li class="pad-top list-header"&gt;
+                                            &lt;p class="text-main text-sm text-uppercase text-bold mar-no"&gt;Account Settings&lt;/p&gt;
+                                        &lt;/li&gt;
+                                        &lt;li class="list-group-item"&gt;
+                                            &lt;div class="pull-right"&gt;
+                                                &lt;input class="toggle-switch" id="demo-switch-1" type="checkbox" checked=""&gt;
+                                                &lt;label for="demo-switch-1"&gt;&lt;/label&gt;
+                                            &lt;/div&gt;
+                                            &lt;p class="mar-no text-main"&gt;Show my personal status&lt;/p&gt;
+                                            &lt;small class="text-muted"&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit.&lt;/small&gt;
+                                        &lt;/li&gt;
+                                        &lt;li class="list-group-item"&gt;
+                                            &lt;div class="pull-right"&gt;
+                                                &lt;input class="toggle-switch" id="demo-switch-2" type="checkbox" checked=""&gt;
+                                                &lt;label for="demo-switch-2"&gt;&lt;/label&gt;
+                                            &lt;/div&gt;
+                                            &lt;p class="mar-no text-main"&gt;Show offline contact&lt;/p&gt;
+                                            &lt;small class="text-muted"&gt;Aenean commodo ligula eget dolor. Aenean massa.&lt;/small&gt;
+                                        &lt;/li&gt;
+                                        &lt;li class="list-group-item"&gt;
+                                            &lt;div class="pull-right"&gt;
+                                                &lt;input class="toggle-switch" id="demo-switch-3" type="checkbox"&gt;
+                                                &lt;label for="demo-switch-3"&gt;&lt;/label&gt;
+                                            &lt;/div&gt;
+                                            &lt;p class="mar-no text-main"&gt;Invisible mode &lt;/p&gt;
+                                            &lt;small class="text-muted"&gt;Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. &lt;/small&gt;
+                                        &lt;/li&gt;
+                                    &lt;/ul&gt;
+
+
+                                    &lt;hr&gt;
+
+                                    &lt;ul class="list-group pad-btm bg-trans"&gt;
+                                        &lt;li class="list-header"&gt;&lt;p class="text-main text-sm text-uppercase text-bold mar-no"&gt;Public Settings&lt;/p&gt;&lt;/li&gt;
+                                        &lt;li class="list-group-item"&gt;
+                                            &lt;div class="pull-right"&gt;
+                                                &lt;input class="toggle-switch" id="demo-switch-4" type="checkbox" checked=""&gt;
+                                                &lt;label for="demo-switch-4"&gt;&lt;/label&gt;
+                                            &lt;/div&gt;
+                                            Online status
+                                        &lt;/li&gt;
+                                        &lt;li class="list-group-item"&gt;
+                                            &lt;div class="pull-right"&gt;
+                                                &lt;input class="toggle-switch" id="demo-switch-5" type="checkbox" checked=""&gt;
+                                                &lt;label for="demo-switch-5"&gt;&lt;/label&gt;
+                                            &lt;/div&gt;
+                                            Show offline contact
+                                        &lt;/li&gt;
+                                        &lt;li class="list-group-item"&gt;
+                                            &lt;div class="pull-right"&gt;
+                                                &lt;input class="toggle-switch" id="demo-switch-6" type="checkbox" checked=""&gt;
+                                                &lt;label for="demo-switch-6"&gt;&lt;/label&gt;
+                                            &lt;/div&gt;
+                                            Show my device icon
+                                        &lt;/li&gt;
+                                    &lt;/ul&gt;
+
+
+
+                                    &lt;hr&gt;
+
+                                    &lt;p class="pad-hor text-main text-sm text-uppercase text-bold mar-no"&gt;Task Progress&lt;/p&gt;
+                                    &lt;div class="pad-all"&gt;
+                                        &lt;p class="text-main"&gt;Upgrade Progress&lt;/p&gt;
+                                        &lt;div class="progress progress-sm"&gt;
+                                            &lt;div class="progress-bar progress-bar-success" style="width: 15%;"&gt;&lt;span class="sr-only"&gt;15%&lt;/span&gt;&lt;/div&gt;
+                                        &lt;/div&gt;
+                                        &lt;small&gt;15% Completed&lt;/small&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class="pad-hor"&gt;
+                                        &lt;p class="text-main"&gt;Database&lt;/p&gt;
+                                        &lt;div class="progress progress-sm"&gt;
+                                            &lt;div class="progress-bar progress-bar-danger" style="width: 75%;"&gt;&lt;span class="sr-only"&gt;75%&lt;/span&gt;&lt;/div&gt;
+                                        &lt;/div&gt;
+                                        &lt;small&gt;17/23 Database&lt;/small&gt;
+                                    &lt;/div&gt;
+
+                                &lt;/div&gt;
+                                &lt;!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--&gt;
+                                &lt;!--Third tab (Settings)--&gt;
+
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;div class="nano-pane" style="display: none;"&gt;&lt;div class="nano-slider" style="height: 1795px; transform: translate(0px, 0px);"&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/aside&gt;</source-html>
+</form>
