@@ -3,7 +3,7 @@
  *
   * @inpaas.key inpaas.devstudio.dynaform.studio
  * @inpaas.name StudioFormImpl
- * @inpaas.version 0.17
+ * @inpaas.version 0.18
  * @inpaas.type patterntype.form
  * @inpaas.engine Nashorn
  * @inpaas.anonymous false
@@ -41,7 +41,7 @@
         	
           
           try{
-            	logging.error("StudioFormImpl::afterSet::data: " + scriptContext);  
+            	logging.error("StudioFormImpl::afterSet::scriptContext: " + scriptContext);  
           		var PackageManagerBusinessDelegate = Java.type("br.com.inpaas.app.packer.PackageManagerBusinessDelegate");
                 var packageManagerBd = new PackageManagerBusinessDelegate(scriptContext);  
                 var fileData = packageManagerBd.getPackageFile(data.id_formulario, "FORM" ); 
