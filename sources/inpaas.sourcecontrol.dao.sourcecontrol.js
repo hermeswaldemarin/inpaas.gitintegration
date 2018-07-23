@@ -43,6 +43,7 @@
     
     logger.warn("teste {}", packageFile.getName())
 
+    
     // Invoke the insert method with that object
     var rows = require("inpaas.core.entity.dao").getDao("SC_SOURCECONTROL").insert(sc);
     
