@@ -1,0 +1,2269 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<form anonymous="false" key="inpaas.devstudio.forms.studio" name="Development Studio" signature="instance=local-dev;userid=1;username=Administrator;formversion=0.768;" style-class="studio" title="Development Studio" xmlns:ns2="br.com.inpaas.model.entity">
+    <filters>
+        <filter default="false" name="Todos">
+            <criterias/>
+            <ordination/>
+        </filter>
+    </filters>
+    <fields/>
+    <libs>
+        <lib all-forms="false" key="libs.codemirror"/>
+    </libs>
+    <permission>inpaas.devstudio.permission.main</permission>
+    <source-css>html, body {
+  	width: 100vw; 
+  	min-width: 960px;    
+}
+
+html, body, body &gt; div {
+  	height: 100%;
+  	
+  	position: relative;
+  	font-family: 'Open Sans', Helvetica, sans-serif;
+}
+
+.strong {
+  	font-weight: bold;
+}
+
+button, button:focus, button:active {
+  	outline: none;
+}
+
+.tab-content, .tab-pane, .tab-pane &gt; iframe {
+  	height: 100%;
+}
+
+.tab-pane &gt; .container {
+  	width: 100%;
+  	padding: 0 15px;
+}
+
+
+.studio body {
+  	transition: .5s;
+  	padding-left: 0px;
+  	
+  	overflow: hidden;
+}
+
+.studio body .tooltip-inner {
+  	width: auto;
+  	padding: 10px 15px;
+  
+  	max-width: 100%;
+  	background-color: rgba(0, 0, 0, .75);
+}
+
+
+
+.studio .sidebar {
+	transition: .5s;
+  	position: absolute;
+  	
+  	x-left: -400px;
+  	top: 0px;
+  
+  	width: 350px;
+  	background: #fff;
+	padding-top: 50px;
+  
+  	overflow: auto;
+  	overflow-x: hidden;  
+  
+}
+
+.studio body.ready  {
+  	x-padding-left: 350px;
+}
+
+.studio .ready .sidebar {
+  	x-left: 0px;
+}
+
+.studio body.fullscreen {
+  	padding-left: 0px;
+}
+
+.studio body.fullscreen .sidebar {
+  	left: -400px;
+}
+
+
+.studio body.fullscreen .main {
+	x-padding-top: 41px;
+}
+
+.studio body.fullscreen .nav-tabs {
+	x-padding-top: 0px;
+  	x-margin-top: -41px;
+}
+
+.studio body.fullscreen .nav&gt;li&gt;a {
+  	x-padding: 5px 15px;
+}
+
+.studio body.fullscreen .nav-tabs&gt;li.active&gt;a, 
+.studio body.fullscreen .nav-tabs&gt;li.active&gt;a:focus, 
+.studio body.fullscreen .nav-tabs&gt;li.active&gt;a:hover {
+  	x-box-shadow: none;
+  	x-border-top-color: transparent;
+}
+
+.col-resize {
+	height: 100%;
+    width: 30px;
+    background: white;
+    position: absolute;
+    right: 0px;
+    left: auto;
+    top: 0px;
+    cursor: col-resize;
+}
+
+#ghostoverlay {
+	position: fixed;
+  	top: 0px;
+  	left: 0px;
+  	width: 100vw;
+  	height: 100vh;
+  
+  	background: #fff;
+  	opacity: .5;
+  
+  	z-index: 998;
+}
+
+#ghostbar{
+  	top: 0px;
+  
+  	height: 100%;
+  
+  	width: 3px !important;
+  	min-width: 3px !important;
+    
+  	background-color:#000;
+  	opacity:0.5;
+  	position:fixed;
+  	cursor: col-resize;
+  	z-index:999
+}
+
+
+/* input-text */
+.input-text {
+  	display: block;
+  	
+    height: 34px;
+  	width: 100%;
+  
+    padding: 6px 12px;
+  
+    font-size: 14px;
+  	font-weight: 200;
+    line-height: 1.42857143;
+  
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+  
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  
+  	outline: none;
+}
+
+.input-text:focus {
+  	border-color: #3C80A6;
+}
+
+
+/* panel-search */
+.panel-search {
+  	display: block;  
+  	height: auto;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+}
+
+.panel-search .input-text {
+  	width: 350px;
+  	height: auto;
+  
+	padding: 14px 80px 14px 25px;
+  	background: #f5f5f5;
+  	border-color: #f5f5f5;
+  	border-bottom-color: #ddd;
+
+	box-shadow: none;
+    border-radius: 0px;
+}
+
+.panel-search .input-text:focus {
+  	background: #fdfdfd;
+  	border-bottom-color: #fff;
+  	border-right-color: #ddd;
+}
+
+.panel-search .button-group {
+  	position: absolute;
+  	top: 10px;
+  	right: 10px;
+}
+
+.panel-search .button-group .dropdown-menu {
+    right: 10px;
+    left: auto;
+    top: 36px;
+    border-radius: 0px;
+}
+
+/* app-title */
+.app-title {
+    min-height: 20px;
+}
+
+.app-title button.dropdown-toggle {  
+    background: #f5f5f5;
+    background-color: transparent;  
+    border-width: 0px;
+  
+    color: #aaa;
+    font-weight: 600;
+    font-size: 11px;
+    padding: 10px 25px;
+    text-align: left;
+}
+
+.app-title button.dropdown-toggle:hover {
+  	color: #555;
+}
+
+.app-title .dropdown-menu {
+    left: 25px;
+    top: 25px;
+}
+
+/* panel-tree */
+.app-tree {
+ 	padding: 0px 15px; 
+}
+
+/* application dropdown */
+.app-dd {
+  	
+}
+
+/* dropdown */
+.dropdown-menu &gt; li.divider {
+	margin: 0px 0;
+}
+
+.dropdown-menu &gt; li.dropdown-header {
+    font-size: 11px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: default;
+}
+
+.dropdown-menu &gt; li &gt; a {
+	padding: 9px 30px;
+    font-size: 12px;
+}
+
+.dropdown-menu&gt;li&gt;a:focus, 
+.dropdown-menu&gt;li&gt;a:hover {
+    color: #FFFFFF;
+    background-color: #587086;
+}
+
+.dropdown-menu &gt; li &gt; a &gt; i.fa {
+    margin-left: -8px;
+    margin-right: 8px;  	
+}
+
+
+/* container */
+.main {
+    padding-right: 0px;
+    padding-left: 0px;
+  
+  	padding-top: 50px;
+}
+
+.main .nav-tabs {
+    background: #f5f5f5;
+    padding: 8px 5px 0px;
+  	margin-top: -50px;
+	height: 50px;  
+  
+  	white-space:nowrap;
+
+  	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.main .nav-tabs &gt; li {
+	position: relative;
+    display: inline-block;
+    float:none;
+}
+
+.main .nav-tabs &gt; li &gt; a {
+  	color: #333;
+    font-size: 13px;
+    letter-spacing: -1px;
+    font-weight: 200;
+    line-height: 20px;
+}
+
+.main .nav-tabs &gt; li &gt; a.editor-changed {
+    color: #900 !important;
+}
+
+
+
+.main .nav-tabs &gt; li &gt; a &gt; .tab-title {
+  	max-width: 100px;
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.main .nav-tabs a.close-tab {
+    font-weight: 200;
+    color: #333;
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+    margin-right: -8px;
+  
+  	display: none;
+}
+
+.main .nav-tabs li.active a.close-tab {
+  	display: inline-block;
+}
+
+.main .nav-tabs a.close-tab:hover,
+.main .nav-tabs a.close-tab:focus,
+.main .nav-tabs a.close-tab:active {
+  	text-decoration: none;
+  	font-weight: 600;
+}
+
+.main .nav &gt; li &gt; a:hover {
+  	color: #607A90;
+    text-decoration: none;
+    background-color: transparent;
+  	border-color: transparent;
+}
+
+.main .nav&gt;li&gt;a:focus, 
+.main .nav&gt;li&gt;a:hover {
+  	background: transparent;
+}
+
+.main .nav-tabs&gt;li.active&gt;a, 
+.main .nav-tabs&gt;li.active&gt;a:focus, 
+.main .nav-tabs&gt;li.active&gt;a:hover {
+  	background-color: #fff;
+	box-shadow: inset 0px 3px 3px #eee;
+  
+	color: #333;
+  	font-weight: 600;
+  	border-color: #ddd;
+  	border-top-color: #e5f3ff;
+  	border-bottom-color: transparent;
+}
+
+.main .nav-tabs&gt;li.active&gt;a.editor-changed, 
+.main .nav-tabs&gt;li.active&gt;a.editor-changed:focus, 
+.main .nav-tabs&gt;li.active&gt;a.editor-changed:hover {
+  	border-top-color: rgba(150, 0, 0, .6);
+}
+
+.main .nav .open&gt;a, 
+.main .nav .open&gt;a:focus, 
+.main .nav .open&gt;a:hover {
+    background-color: transparent;
+    border-color: transparent;  	
+}
+
+.main .tab-content &gt; .tab-pane {
+  	padding: 0 0;
+    overflow: auto;
+}
+
+.main .tab-content &gt; .tab-pane.with-iframe {
+  	padding: 0 0;  
+  	overflow: hidden;
+    border-left: 1px solid #ddd;
+}
+
+
+.main .tab-content iframe {
+  	border: 0px;
+  	width: 100%;
+}
+
+
+
+/* loading */
+.load-wait {
+	opacity: 1;
+	z-index: 500;
+	transition: .5s;
+	cursor: wait;
+	
+	background: rgba(255, 255, 255, .75);
+	
+	position: absolute;
+	
+	
+	left: 0px;
+	top: 0px;	
+	width: 100%;
+	height: 100%;
+	
+	text-align: center;
+	padding: 20% 0px;
+	
+}
+
+.load-wait i {
+	margin: 0 auto;
+	color: #666;
+	font-size: 300%;
+}
+
+.ready .load-wait {
+	z-index: -1;
+	opacity: 0;
+}
+
+span.loading {
+  padding: 0px 10px;
+  font-weight: 200;
+}
+
+span.loading i {
+  width: 36px
+}
+
+/* treeview */
+.treesearch {
+  	display: none;
+}
+
+.treesearch &gt; span {
+    display: block;
+  
+    font-size: 12px;
+    font-weight: 100;
+    color: #888;
+    padding: 5px 11px;
+    margin-bottom: 5px;
+}
+
+[data-search] .treevw {
+  	display: none;
+}
+
+[data-search] .treesearch {
+  	display: block;
+}
+
+
+.app-tree {
+    min-height: 20px;
+    margin: 0 0;
+    clear: both;
+}
+
+.app-tree &gt; div &gt; ul {
+	padding-left: 10px;
+}
+
+.app-tree li {
+    list-style-type: none;
+    margin: 0;
+    padding: 5px 5px 5px 0;
+    position: relative;
+    white-space: nowrap;
+}
+
+.app-tree li.leaf {
+  	padding-left: 1px;
+}
+
+.app-tree li &gt; ul {
+	overflow: hidden;
+	height: auto;
+	max-height: auto;
+	padding-left: 22px;
+	
+	transition: .5s;
+}
+
+.app-tree li.closed &gt; ul {
+	max-height: 0px !important;
+}
+
+.app-tree li &gt; ul &gt; li::after, .treevw li &gt; ul &gt; li::before {
+    content: '';
+    left: -15px;
+    position: absolute;
+    right: auto;
+}
+
+.app-tree li &gt; ul &gt; li::before {
+    border-left: 1px dotted #bbb;
+    bottom: 50px;
+    height: 100%;
+    top: 0;
+    width: 1px;
+}
+
+.app-tree li &gt; ul &gt; li::after {
+    border-top: 1px dotted #bbb;
+    height: 12px;
+    top: 15px;
+    width: 15px;
+}
+
+.app-tree li &gt; ul &gt; li.leaf::after {
+    width: 30px;
+}
+
+
+.app-tree li &gt; a {
+	color: #333;
+	
+	height: 22px;
+    display: inline-block;
+}
+
+.app-tree li &gt; a:hover, .treevw li &gt; a:active, .treevw li &gt; a:focus {
+	text-decoration: none;
+}
+
+.app-tree li &gt; a &gt; i {
+	margin-right: 4px;
+}
+
+.app-tree li i.nodeicon {
+	width: 1.28571429em;
+	
+	display: inline-block;
+    text-align: center;
+
+	font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+}
+
+.app-tree li &gt; a {
+  	font-weight: 200;
+  	font-size: 90%;
+    letter-spacing: -0.4px;
+}
+
+.app-tree li &gt; a:hover {	
+  	font-weight: 400;
+  	color: #4C5367;
+}
+
+.app-tree li i.nodeicon:before {
+	content: "\f147";
+}
+
+.app-tree li.closed i.nodeicon:before {
+	content: "\f196";
+}
+
+.app-tree li.empty &gt; a {
+  	color: #aaa;
+}
+
+.app-tree li.empty &gt; a:hover {	
+  	font-weight: 200;
+  	color: #aaa;
+  	cursor: default;
+}
+
+.app-tree li.empty i.nodeicon:before {
+	content: " ";
+}
+
+.app-tree li.leaf &gt; a {
+	padding-left: 19px;
+}
+
+/* panel-info */
+.panel-info {
+  	position: relative;
+  	padding: 0px 18px !important;
+}
+
+.panel-info p.info-attr {
+  	font-size: 12px;
+  	margin-top: 10px;
+  	font-weight: 200;
+}
+
+.panel-info .info-attr &gt; span {
+	float: right;
+    font-weight: 600;
+    max-width: 60%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+}
+
+
+/* entity */
+.container-entity {
+  	padding: 0 25px;
+  	font-size: 90%;  
+}
+.container-entity .panel {
+  	margin-top: 10px;
+  	margin-bottom: 0px;
+}
+
+.container-entity .panel-edit {	
+  	display: none;
+
+    margin: -50px 0;
+    border-radius: 0px;
+    border: 0px;
+  	height: 100%;
+  
+  	border-left: 1px solid #eee;
+}
+
+.tab-pane &gt; .container-edit {
+  	padding: 50px 0;
+  	padding-bottom: 0;
+  	height: 100%;
+}
+
+.tab-pane &gt; .container-edit &gt; .panel-edit {
+  	display: block;
+}
+
+.tab-pane &gt; .container-edit .panel-body {
+  	height: 100%;
+  	overflow: auto;
+}
+
+.tab-pane &gt; .container-edit .panel-footer,
+.tab-pane &gt; .container-edit .panel-heading {
+  	height: 50px;
+}
+
+.tab-pane &gt; .container-edit .panel-heading h3 {
+  	font-size: 13px;
+}
+
+.tab-pane &gt; .container-edit .panel-heading h3 &gt; span {
+    vertical-align: bottom;
+	margin-left: 5px;
+}
+
+
+.tab-pane &gt; .container-edit &gt; .row {
+  	display: none;
+}
+
+
+.container-entity .panel-heading h3 {
+  	line-height: 30px;
+}
+
+.container-entity .panel-heading h3 &gt; button {
+
+}
+
+.container-entity .panel-body {
+	padding: 0px;
+}
+
+.container-entity .panel-body .table {
+   	margin-bottom: 0px;
+}
+
+.container-entity .panel-body .table &gt; tbody &gt; tr &gt; td {
+  	font-size: 12px;
+    vertical-align: middle;
+}
+
+.container-entity .panel-body .table &gt; tbody &gt; tr &gt; td:first-child {
+  	padding-left: 20px;
+}
+
+.container-entity .panel-body .table &gt; tbody &gt; tr &gt; td:last-child {
+  	padding-right: 20px;
+}
+
+
+.entitytdpk {
+  	width: 30px;  	
+  	overflow: hidden;
+  	text-overflow: clip;
+  	position: relative;
+  
+  	color: transparent;
+}
+
+.entitytdpk:not(:empty):before {
+    content: "\f084";
+	position: absolute;
+    left: 15px;
+    top: 12px;
+  
+  	color: #333;
+}
+
+.entitytdpk:not(:empty) {
+	font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+  	display: inline-block;
+    text-align: center;
+}
+
+pre {
+  	height: 100%;
+	padding: 0px;
+	border: 0px solid lightgrey;
+  	border-radius: 0px;
+}</source-css>
+    <source-html>&lt;!DOCTYPE html&gt;
+&lt;html lang="{{#localization}}label.locale{{/localization}}" class="studio"&gt;
+  
+&lt;head&gt; 
+    &lt;meta charset="utf-8" /&gt;
+    &lt;title&gt;inPaaS :: Development Studio&lt;/title&gt;
+  
+    &lt;meta name="description" content="" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+
+    &lt;link rel="stylesheet" href="//static.inpaas.com/assets/bootstrap-3.3.7/css/bootstrap.min.css" /&gt;
+    &lt;link rel="stylesheet" href="//static.inpaas.com/assets/font-awesome-4.7.0/css/font-awesome.min.css" /&gt;
+    &lt;link rel="stylesheet" href="//static.inpaas.com/assets/fonts/open-sans.css" /&gt;
+  
+    &lt;link rel="stylesheet" href="/includes/inpaas.devstudio.forms.studio/css/studio.css?_v={{form.version}}" /&gt;
+&lt;/head&gt;
+
+&lt;body style="padding-left: 350px;"&gt;   
+  	&lt;div class="sidebar" style="left: 0px;"&gt;
+      	&lt;div class="panel-search dropdown"&gt;
+      		&lt;input type="text" class="input-text" data-trigger="keyup" data-toggle="tree-search" placeholder="Search ..." /&gt;
+          	&lt;div class="button-group"&gt;
+           		&lt;button type="button" class="btn btn-sm btn-default" 
+                        title="Advanced Search"
+                        data-icon="fa-search" 
+                        data-toggle="open-iframe-tab" 
+                        data-id="3" 
+                        data-title="Advanced Search" 
+                        data-name="search" 
+                        data-form="inpaas.studio.forms.search"&gt;
+                  &lt;i class="fa fa-search"&gt;&lt;/i&gt;
+              	&lt;/button&gt;
+              	&lt;button type="button" class="btn btn-sm btn-success dropdown-toggle" data-toggle="dropdown"  id="newItemMenu" aria-haspopup="true" aria-expanded="true"&gt;New &lt;span class="caret"&gt;&lt;/span&gt;&lt;/button&gt;
+                &lt;ul class="dropdown-menu" aria-labelledby="newItemMenu"&gt;
+                    &lt;li class="dropdown-header"&gt;New Item&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#" data-toggle="new-module-item" data-type="entity"&gt;&lt;i class="fa fa-fw fa-database"&gt;&lt;/i&gt; Entity&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#" data-toggle="new-module-item" data-type="form"&gt;&lt;i class="fa fa-fw fa-tv"&gt;&lt;/i&gt; Form&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#" data-toggle="new-module-item" data-type="template"&gt;&lt;i class="fa fa-fw fa-tv"&gt;&lt;/i&gt; Template&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#" data-toggle="new-module-item" data-type="source"&gt;&lt;i class="fa fa-fw fa-code"&gt;&lt;/i&gt; Source&lt;/a&gt;&lt;/li&gt;
+
+                    &lt;li role="separator" class="divider"&gt;&lt;/li&gt;
+                    &lt;li class="dropdown-header"&gt;New Project/Module&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#" data-toggle="new-module-item" data-type="app"&gt;&lt;i class="fa fa-fw fa-plus"&gt;&lt;/i&gt; Application Project&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#" data-toggle="new-module-item" data-type="module"&gt;&lt;i class="fa fa-fw fa-plus"&gt;&lt;/i&gt; Module&lt;/a&gt;&lt;/li&gt;
+
+                    &lt;li role="separator" class="divider"&gt;&lt;/li&gt;
+                    &lt;!--li class="dropdown-header"&gt;Clients&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#" data-toggle="open-client"&gt;&lt;i class="fa fa-fw fa-tags"&gt;&lt;/i&gt; API Clients&lt;/a&gt;&lt;/li--&gt;
+
+                    &lt;li role="separator" class="divider"&gt;&lt;/li&gt;
+                    &lt;li class="dropdown-header"&gt;Import&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#" data-toggle="import-module-item"&gt;&lt;i class="fa fa-fw fa-upload"&gt;&lt;/i&gt; Import Package&lt;/a&gt;&lt;/li&gt;
+
+                    &lt;li role="separator" class="divider"&gt;&lt;/li&gt;
+                    &lt;li class="dropdown-header"&gt;Release&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#" data-toggle="release-app"&gt;&lt;i class="fa fa-fw fa-shopping-bag"&gt;&lt;/i&gt; Release Application&lt;/a&gt;&lt;/li&gt;
+
+              &lt;/ul&gt;
+          	&lt;/div&gt;
+      	&lt;/div&gt;
+      
+		&lt;div class="app-title dropdown"&gt;
+      		&lt;button type="button" class="dropdown-toggle" data-toggle="dropdown" id="appNameMenu" aria-haspopup="true" aria-expanded="true"&gt;	
+                &lt;span data-bind="module.name"&gt;Loading ...&lt;/span&gt; 
+              	&lt;span class="caret"&gt;&lt;/span&gt;
+          	&lt;/button&gt;
+            &lt;ul class="app-dd dropdown-menu" aria-labelledby="appNameMenu" data-bind="apps"&gt;&lt;/ul&gt;
+      	&lt;/div&gt;
+
+      	&lt;div class="app-tree" data-toggle="tree-data"&gt;
+      
+      	&lt;/div&gt;
+      
+      	&lt;div class="col-resize"&gt;&lt;/div&gt;
+	&lt;/div&gt;
+  
+  	&lt;div class="container-fluid main"&gt;
+      	&lt;ul class="nav nav-tabs" role="tablist"&gt;
+			&lt;li role="presentation" style="display: none;"&gt;&lt;a href="#home" aria-controls="home" role="tab" data-toggle="tab"&gt;Overview&lt;/a&gt;&lt;/li&gt;
+			&lt;li role="presentation" class="lastTab dropdown" style="display: none;"&gt;
+              	&lt;a class="dropdown-toggle" data-toggle="dropdown" href="#"&gt;&lt;i class="glyphicon glyphicon-chevron-down"&gt;&lt;/i&gt;&lt;/a&gt;
+				&lt;ul class="dropdown-menu dropdown-menu-right" id="collapsed"&gt;&lt;/ul&gt;
+			&lt;/li&gt;
+      	&lt;/ul&gt;
+      
+      	&lt;div class="tab-content"&gt;
+          	&lt;div role="tabpanel" class="tab-pane active" id="home"&gt;&lt;/div&gt;
+      	&lt;/div&gt;
+ 	&lt;/div&gt;
+  
+    &lt;div class="load-wait"&gt;
+      &lt;i class="fa fa-spin fa-spinner"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+  
+    &lt;script type="text/ng-template" id="modal-window.html"&gt;
+    	&lt;div class="modal-dialog {{size ? 'modal-' + size : ''}}"&gt;&lt;div class="modal-content" uib-modal-transclude&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;/script&gt;
+
+ 	&lt;!-- scripts --&gt;
+    &lt;script src="//static.inpaas.com/assets/jquery/jquery-2.2.4.min.js"&gt;&lt;/script&gt;
+    &lt;script src="//static.inpaas.com/assets/bootstrap-3.3.7/js/bootstrap.min.js"&gt;&lt;/script&gt;
+    &lt;script src="//static.inpaas.com/assets/notify/notify.js"&gt;&lt;/script&gt;
+    &lt;script src="//static.inpaas.com/assets/bootstrap-loading/jq-bs-loading.js"&gt;&lt;/script&gt;
+  
+  	&lt;script src="/web/js/inpaas-default.js?_v={{assets-random-id}}"&gt;&lt;/script&gt;
+    &lt;script src="/web/js/rest-api.js?_v={{assets-random-id}}"&gt;&lt;/script&gt;
+  
+  
+	&lt;script src="/static/js/home.js?_v={{assets-random-id}}"&gt;&lt;/script&gt;
+  
+  	&lt;script src="/includes/inpaas.devstudio.forms.studio/js/studio.js?_v={{form.version}}"&gt;&lt;/script&gt;
+
+	&lt;script src="/api/l10n/translations?jsonp=l10n_data&amp;_v={{assets-random-id}}"&gt;&lt;/script&gt;
+	&lt;script src="/static/js/l10n.js?_v={{assets-random-id}}"&gt;&lt;/script&gt;
+  
+&lt;/body&gt;
+&lt;/html&gt;</source-html>
+    <source-js>'use strict';
+(function($, global) {
+
+	var _data = {};
+
+  	function fn_toggle_treenode(e) {
+      	e.preventDefault();
+      	e.stopPropagation();
+
+      	$(this.parentNode).toggleClass("closed");
+    }
+
+  	function fn_refresh_apps() {
+      	var $appsdd = $("ul[data-bind=apps]");
+      
+      	$appsdd.parent().hide();
+      	$appsdd.children().remove();
+
+      	RESTService("inpaas.devstudio.rest.studio").findApps(function(data) {
+			$("body").addClass("ready");          
+          
+			//data = [];          
+          	if (!data || data.length == 0) {
+				return;
+            }
+          
+          	for(var k in data) {
+              	var app = data[k];
+
+              	if ($appsdd.children().size() &gt; 0) 
+	            	$("&lt;li&gt;", { "role": "separator", "class": "divider" }).appendTo( $appsdd );
+
+              	$("&lt;li&gt;", { "class": "dropdown-header", "data-id": app.id, "data-key": app.key }).text(app.title).appendTo( $appsdd );
+
+              	for (var j in app.modules) {
+                  	var appModule = app.modules[j];
+
+                  	$("&lt;li&gt;").append( $("&lt;a&gt;", { "href": "#", "data-toggle": "open-module", "data-id": appModule.id, "data-key": appModule.key }).text(appModule.title) )
+                    	.appendTo( $appsdd );
+                }
+            }
+
+			$appsdd.parent().show();
+          	$appsdd.find("a").first().trigger("click");
+        });
+    }
+
+  	function fn_refresh_entities(container, data) {
+
+        var h = "&lt;ul&gt;";
+        for (var k in data) {
+          if (data[k].type != "DATABASE") continue;
+          h += "&lt;li&gt;&lt;a href=\"#\" data-toggle=\"tree-node\"&gt;&lt;i class=\"fa fa-fw fa-minus-square-o nodeicon\"&gt;&lt;/i&gt;&lt;i class=\"fa fa-fw fa-database\"&gt;&lt;/i&gt; " + data[k].name + "&lt;/a&gt;&lt;ul&gt;";
+
+          for (var j in data[k].objs) {
+            var obj = data[k].objs[j];
+            h += "&lt;li class=\"leaf\"&gt;&lt;a href=\"#\" data-toggle=\"open-entity-tab\" data-id=\"" + obj.id + "\"&gt;&lt;i class=\"fa fa-fw fa-table\"&gt;&lt;/i&gt; " + obj.name + "&lt;/a&gt;&lt;/li&gt;";
+
+          }
+
+          h += "&lt;/ul&gt;&lt;/li&gt;";
+
+          	container.removeClass("empty");
+        }    
+
+		h+="&lt;/ul&gt;";
+
+        container.append(h);
+        // &lt;span&gt;&lt;i class="fa fa-fw fa-minus-square-o nodeicon"&gt;&lt;/i&gt;&lt;i class="fa fa-fw fa-connectdevelop"&gt;&lt;/i&gt; Data Sources&lt;/span&gt;
+
+    }
+
+  	function fn_refresh_sources(container, data) {
+
+        var h = "&lt;ul&gt;";
+        for (var k in data) {
+          h += "&lt;li class=\"closed\"&gt;&lt;a href=\"#\" data-toggle=\"tree-node\"&gt;&lt;i class=\"fa fa-fw fa-minus-square-o nodeicon\"&gt;&lt;/i&gt;&lt;i class=\"fa fa-fw fa-folder-o\"&gt;&lt;/i&gt; " + k + "&lt;/a&gt;&lt;ul&gt;";
+		//console.log(data)
+          for (var j in data[k]) {
+            var obj = data[k][j];
+            var sourceIcon = "";
+
+            switch(obj.type) {
+              	case 1:
+					sourceIcon = "fa-random";
+                	break;
+              	case 9:
+					sourceIcon = "fa-unlock-alt";
+                	break;
+              	case 10:
+					sourceIcon = "fa-puzzle-piece";
+                	break;
+              	default:
+                	sourceIcon = "fa-file-code-o";
+            }
+
+            h += "&lt;li class=\"leaf\"&gt;&lt;a href=\"#\" data-toggle=\"open-source-tab\" data-editor-type=\"source\" data-id=\"" + obj.id + "\" title=\"" + obj.key + "\"&gt;&lt;i class=\"fa fa-fw " + sourceIcon + "\"&gt;&lt;/i&gt; " + obj.name + "&lt;/a&gt;&lt;/li&gt;";
+
+          }
+
+          h += "&lt;/ul&gt;&lt;/li&gt;";
+
+          	container.removeClass("empty");
+        }    
+
+		h+="&lt;/ul&gt;";
+
+        container.append(h);      	
+
+    }
+    
+    function fn_refresh_template(container, data) {
+
+        var h = "&lt;ul&gt;";
+        for (var k in data) {
+          //h += "&lt;li class=\"closed\"&gt;&lt;a href=\"#\" data-toggle=\"tree-node\"&gt;&lt;i class=\"fa fa-fw fa-minus-square-o nodeicon\"&gt;&lt;/i&gt;&lt;i class=\"fa fa-fw fa-folder-o\"&gt;&lt;/i&gt; " + k + "&lt;/a&gt;&lt;ul&gt;";
+
+            var obj = data[k];
+          	
+          	if(!obj.name){
+            	obj.name = "[Empty Name]";
+            }
+          
+            h += "&lt;li class=\"leaf\"&gt;&lt;a href=\"#\" data-toggle=\"open-template-tab\" data-id=\"" + obj.id + "\" title=\"" + obj.key + "\"&gt;&lt;i class=\"fa fa-sticky-note-o\"&gt;&lt;/i&gt; " + obj.name + "&lt;/a&gt;&lt;/li&gt;";
+          	//h += "&lt;/ul&gt;&lt;/li&gt;";
+          	container.removeClass("empty");
+        }    
+
+		h+="&lt;/ul&gt;";
+
+        container.append(h);      	
+    };
+
+  	function fn_refresh_queues(container, data) {
+
+        var h = "&lt;ul&gt;";
+        for (var k in data) {
+            var obj = data[k];
+          	if(!obj.name){
+            	obj.name = "[Empty Name]";
+            }
+          
+            h += "&lt;li class=\"leaf\"&gt;&lt;a href=\"#\" data-toggle=\"open-queues-tab\" data-id=\"" + obj.id + "\" title=\"" + obj.key + "\"&gt;&lt;i class=\"fa fa-sticky-note-o\"&gt;&lt;/i&gt; " + obj.name + "&lt;/a&gt;&lt;/li&gt;";
+          	container.removeClass("empty");
+        }    
+
+		h+="&lt;/ul&gt;";
+
+        container.append(h);      	
+    };
+
+  	function fn_refresh_forms(container, data) {
+        var h = "&lt;ul&gt;";
+        for (var k in data) {
+          h += "&lt;li class=\"closed\"&gt;&lt;a href=\"#\" data-toggle=\"tree-node\"&gt;&lt;i class=\"fa fa-fw fa-minus-square-o nodeicon\"&gt;&lt;/i&gt;&lt;i class=\"fa fa-fw fa-folder-o\"&gt;&lt;/i&gt; " + k + "&lt;/a&gt;&lt;ul&gt;";
+
+          for (var j in data[k]) {
+            var obj = data[k][j];
+
+            h += "&lt;li class=\"leaf\"&gt;&lt;a href=\"#\" data-type=\"" + obj.type + "\" data-id=\"" + obj.id + "\" data-toggle=\"open-form-tab\" title=\"" + obj.key + "\"&gt;&lt;i class=\"fa fa-fw fa-tv\"&gt;&lt;/i&gt; " + obj.name + "&lt;/a&gt;&lt;ul&gt;";
+
+            /*
+            h += "&lt;li&gt;&lt;a href=\"#\" data-id=\"" + obj.id + "\" data-toggle=\"open-form-design\"&gt;&lt;i class=\"fa fa-fw fa-paint-brush\"&gt;&lt;/i&gt; Designer&lt;/a&gt;&lt;/li&gt;";
+            h += "&lt;li&gt;&lt;a href=\"#\" data-id=\"" + obj.id + "\" data-toggle=\"open-form-css\"&gt;&lt;i class=\"fa fa-fw fa-code\"&gt;&lt;/i&gt; CSS&lt;/a&gt;&lt;/li&gt;";
+            h += "&lt;li&gt;&lt;a href=\"#\" data-id=\"" + obj.id + "\" data-toggle=\"open-form-javascript\"&gt;&lt;i class=\"fa fa-fw fa-code\"&gt;&lt;/i&gt; JavaScript&lt;/a&gt;&lt;/li&gt;";
+            h += "&lt;li&gt;&lt;a href=\"#\" data-id=\"" + obj.id + "\" data-toggle=\"open-form-backend\"&gt;&lt;i class=\"fa fa-fw fa-code\"&gt;&lt;/i&gt; Server-Side&lt;/a&gt;&lt;/li&gt;";
+            */
+
+            h+= "&lt;/ul&gt;&lt;/li&gt;";
+
+          }
+
+          h += "&lt;/ul&gt;&lt;/li&gt;";
+
+          	container.removeClass("empty");
+        }    
+
+		h += "&lt;/ul&gt;";
+
+        container.append(h);      	      
+    }
+
+  	function fn_open_entity_tab() {
+      	var entityFrom = $(this).attr("data-toggle");
+      	var entityId = this.getAttribute("data-id");
+        var $tab = fn_tab_open({
+          	name: "tab_ent_" + entityId,
+          	icon: "fa-table",
+          	title: this.innerText
+        });
+
+       	IFrameService.loadFrame("/forms/inpaas.devstudio.entity.main/"+ entityId, "entity", entityId, $tab);
+    }
+  
+  	function fn_open_entity_tab_frame(data) {
+        var $tab = fn_tab_open({
+          	name: "tab_ent_" + data.id,
+          	icon: "fa-table",
+          	title: data.title
+        });
+
+       	IFrameService.loadFrame("/forms/inpaas.devstudio.entity.main/"+ data.id, "entity", data.id, $tab);
+    }
+  	window.fn_open_entity_tab_frame = fn_open_entity_tab_frame;
+	
+  	function fn_new_entity() 	{
+      	var entityFrom = $(this).attr("data-toggle");
+      	var moduleId   = $("body").attr("data-module-id");      
+      	var entityId   = this.getAttribute("data-id");
+
+      	$.ajax({
+          	"url": "/forms/inpaas.studio.form.newEntity",
+          	"cache": false,
+          	"type": "GET",
+          	"success": function(data, textStatus, jqXHR) {
+              	var formHtml = $(data)[0].innerHTML;
+              	var moduleKey = $("body").attr("data-module-key");
+
+              	window.top.showModal("&lt;i class=\"fa fa-fw fa-database\"&gt;&lt;/i&gt; New Entity", formHtml, function(container, entity){
+                  	if(entity.key == "" || entity.key == null)
+                    	return;
+                  
+                  	entity.key = entity.key.toUpperCase();
+
+                    RESTService("inpaas.devstudio.rest.studio").findEntities({ "moduleId": moduleId }, function(result){
+                      	var regex = '[^a-zA-Z0-9_]+';
+                      	var divError = $(data)[0];
+                        
+                      	// console.log($(divError).children().find(".error_div"));
+                      
+                    	for(var k in result){
+                        	if(entity.key == result[k].name){
+                              	//$(divError).children().find(".error_div").html("&lt;span style='color:red'&gt; label.entity.error &lt;/span&gt;");
+                              	$.notify("label.entity.error", { autoHide: false, className: 'error' });
+                            	return;
+                            } else if(entity.key.match(regex)){
+                            	//$(divError).children().find(".error_div").html("&lt;span style='color:red'&gt; label.entity.error &lt;/span&gt;");
+                              	$.notify("label.entity.error", { autoHide: false, className: 'error' });
+                            	return;
+                            }
+                        };
+
+                        var $tab = fn_tab_open({
+                            name: "tab_ent_" + entity.key,
+                            icon: "fa-table",
+                            title: entity.key
+                        });
+                      
+                      	IFrameService.loadFrame("/forms/inpaas.devstudio.entity.main/#"+ moduleId +"&amp;"+ entity.key + "", "entity", entity.key, $tab);
+                  		container.modal("hide");
+                    }); 
+                });
+        	}
+		});
+    }
+
+  	function fn_open_source_tab(e) {
+      	e.preventDefault();
+
+      	var sourceId = this.getAttribute("data-id");
+        var $tab = fn_tab_open({
+          	name: "tab_source_" + sourceId,
+          	icon: "fa-code",
+          	title: this.innerText
+        });
+
+      	SourceService.loadSource(sourceId, $tab);      
+    }
+  
+  	function fn_open_source_tab_inframe(data) {
+      	var sourceId = data.id;
+        var $tab = fn_tab_open({
+          	name: "tab_source_" + sourceId,
+          	icon: "fa-code",
+          	title: data.title
+        });
+
+      	SourceService.loadSource(sourceId, $tab);      
+    }
+  
+  	window.fn_open_source_tab_inframe = fn_open_source_tab_inframe;
+  
+  	function fn_open_template_tab(e) {
+      	e.preventDefault();
+
+      	var templateId = this.getAttribute("data-id");
+        var $tab = fn_tab_open({
+          	name: "tab_source_" + templateId,
+          	icon: "fa-code",
+          	title: this.innerText
+        });
+
+      	TemplateService.loadTemplate(templateId, $tab);      
+    };
+  
+  	function fn_open_queues_tab(e) {
+    	e.preventDefault();
+
+      	var queueid = this.getAttribute("data-id");
+        var $tab = fn_tab_open({
+          	name: "tab_source_" + queueid,
+          	icon: "fa-code",
+          	title: this.innerText
+        });
+		QueueService.loadQueue(queueid, $tab);
+    };
+
+  	function fn_release_app(e) {
+      	e.preventDefault();
+
+      	var formId = this.getAttribute("data-id");
+        var $tab = fn_tab_open({
+          	name: "tab_release_app",
+          	icon: "fa-shopping-bag",
+          	title: "Publisher"
+        });
+
+      	IFrameService.loadFrame("/forms/inpaas.publisher.forms.main", "tab_release_app", "0", $tab); 
+    };
+
+  	function fn_open_form_tabevent(e) {
+      	e.preventDefault();
+		
+      	fn_open_form_tab(this.getAttribute("data-id"), this.innerText, this.getAttribute("data-type"));   
+    }
+  
+  	function fn_open_form_tab(formId, formTitle, type) {
+		var $tab = fn_tab_open({
+          	name: "tab_form_" + formId,
+          	icon: "fa-tv",
+          	title: formTitle
+        });
+
+      	FormService.loadForm(formId, $tab, type);  
+    }
+  
+  	window.fn_open_form_tab = fn_open_form_tab;
+
+  	function fn_open_iframe_tab(e) {
+      	e.preventDefault();
+      
+      	var tabName = this.getAttribute("data-name");
+      	var tabTitle = this.getAttribute("data-title");
+      	var tabIcon = this.getAttribute("data-icon");
+      
+      	var tabName = this.getAttribute("data-name");
+
+      	var formKey = this.getAttribute("data-form");
+      	var dataId = this.getAttribute("data-id");
+      
+        var $tab = fn_tab_open({
+          	name: "tab_" + tabName + "_" + dataId,
+          	icon: tabIcon,
+          	title: tabTitle
+        });
+      	
+     	IFrameService.loadFrame("/forms/" + formKey + "/" + dataId, tabName, dataId, $tab); 
+    }
+  
+  	function fn_new_httpservice(e) {
+      	e.preventDefault();
+      
+		var moduleId = $("body").attr("data-module-id");      
+      	window.top.dynaform.modal("inpaas.httpclient.forms.newconnection", moduleId, new HTTPClientImport());
+    }
+  
+  	function fn_new_form(e) {
+      	e.preventDefault();
+      
+      	FormService.newForm(); 
+    }
+  
+  	function fn_new_template(e) {
+      	e.preventDefault();
+      
+      	TemplateService.newTemplate(); 
+    }
+  
+  	function fn_new_queue(e) {
+    	e.preventDefault();
+      
+      	QueueService.newQueue();
+    }
+
+  	function fn_new_source(e) {
+      	e.preventDefault();
+      
+      	SourceService.newSource(); 
+    }
+  
+  	function fn_new_app(e) {
+      	e.preventDefault();
+      
+      	AppService.newApp(); 
+    }
+  
+  	function fn_new_module(e) {
+      	e.preventDefault();
+      
+      	AppService.newModule(); 
+    }
+  
+  	function fn_import_package(e) {
+      	e.preventDefault();
+      
+      	PackageService.importPackage(); 
+    }
+  
+  	function fn_open_module(e) {
+		e.preventDefault();
+      
+      	var moduleId = this.getAttribute("data-id");
+      	var moduleName = this.innerText;
+      	
+      	fn_handle_module(moduleId, moduleName);
+    }
+  
+  	function fn_handle_module(moduleId, moduleName) {
+      	$(".app-title [data-bind='module.name']").text(moduleName);
+      
+      	var $tree = $("[data-toggle=tree-data]").find(".treevw").html("");
+      
+      	if ($tree.length == 0)
+        	$tree = $("&lt;div&gt;", { "class": "treevw" }).appendTo("[data-toggle=tree-data]");
+      
+      	if (moduleId == null) return;      
+		RESTService("inpaas.devstudio.rest.studio").getModule({ "moduleId": moduleId }, fn_refresh_module.bind($tree[0])); 
+    }
+  	global["openModule"] = fn_handle_module;
+  
+  	function fn_refresh_module(data) {
+      
+      	// console.log(data);
+      	var $ul = $("&lt;ul&gt;").appendTo(this);
+      	//console.log(data)
+      	fn_refresh_forms    ( fn_tree_addnode($ul, "fa-object-ungroup", "Forms"), data["forms"] );
+      	fn_refresh_sources  ( fn_tree_addnode($ul, "fa-code", "Sources"), data["sources"] );
+      	fn_refresh_template ( fn_tree_addnode($ul, "fa-sticky-note-o", "Templates"), data["templates"] );
+      
+      	if(data["queues"]){
+      		fn_refresh_queues   ( fn_tree_addnode($ul, "fa-clone", "Queues"), data["queues"] );
+        }
+      
+      	fn_tree_addnodelist ( fn_tree_addnode($ul, "fa-database","Entity"), 		 "fa-table", { "toggle": "open-entity-tab" }, data["data-sources"] );
+
+      	if (data["http-services"]) {          
+			fn_tree_addnodelist ( fn_tree_addnode($ul, "fa-globe", "HTTP Services"), 		 "fa-feed", { "toggle": "open-httpservice-tab" }, data["http-services"] );
+        }
+
+      
+      	fn_tree_addleaf($ul, "fa-send-o", "Mailing", 			{ "toggle": "open-iframe-tab", "id": data.id, "title": data.title, "name": "mailing", "form": "inpaas.devstudio.forms.mailing" });
+       	// fn_tree_addleaf($ul, "fa-clock-o", "Scheduled Tasks",{ "toggle": "open-iframe-tab", "id": data.id, "title": data.title, "name": "tasks", "form": "inpaas.devstudio.forms.tasks" });
+      	fn_tree_addleaf($ul, "fa-rss", "Notifications", 		{ "toggle": "open-iframe-tab", "id": data.id, "title": data.title, "name": "notifs", "form": "inpaas.devstudio.forms.notification.main" });
+      	// fn_tree_addleaf($ul, "fa-link", "Files", 			{ "toggle": "open-iframe-tab", "id": data.id, "title": data.title, "name": "files", "form": "inpaas.devstudio.forms.files" });
+      	fn_tree_addleaf($ul, "fa-unlock-alt", "User Roles", 	{ "toggle": "open-iframe-tab", "id": data.id, "title": data.title, "name": "usergroups", "form": "inpaas.devstudio.forms.usergroup.main" });
+      	fn_tree_addleaf($ul, "fa-braille", "Permissions", 		{ "toggle": "open-iframe-tab", "id": data.id, "title": data.title, "name": "permissions", "form": "inpaas.devstudio.forms.permission" });
+      	fn_tree_addleaf($ul, "fa-font", "Labels", 				{ "toggle": "open-iframe-tab", "id": data.id, "title": data.title, "name": "labels", "form": "inpaas.devstudio.forms.labels-v2" } );
+      	fn_tree_addleaf($ul, "fa-bars", "Menu", 				{ "toggle": "open-iframe-tab", "id": data.id, "title": data.title, "name": "menus", "form": "inpaas.devstudio.forms.menu.edit" } );
+      	fn_tree_addleaf($ul, "fa-table", "Business Properties", { "toggle": "open-iframe-tab", "id": "", "title": "Business Properties", "name": "businessprop", "form": "inpaas.studio.forms.core_formbusinessprop.list" });  
+      	fn_tree_addleaf($ul, "fa-wrench", "Settings", 			{ "toggle": "open-iframe-tab", "id": data.id, "title": data.title, "name": "settings", "form": "inpaas.devstudio.forms.module.main" });  
+      	fn_tree_addleaf($ul, "fa-database", "Database", 		{ "toggle": "open-iframe-tab", "id": data.id, "title": data.title, "name": "database", "form": "inpaas.devstudio.forms.dbexplorer-v2" });  
+        fn_tree_addleaf($ul, "fa-code-fork", "Source Control",    { "toggle": "open-iframe-tab", "id": data.id, "title": data.title, "name": "sourcecontrol", "form": "inpaas.devstudio.forms.sourcecontrolconfig" });  
+      	$("body").attr("data-module-key", data.key)
+          		 .attr("data-module-id", data.id)
+          		 .attr("data-module-name", data.title);
+      
+    }
+  
+  	// function removida, e recolocada no IAM
+  	/*function fn_open_client() {
+      	var entityFrom = $(this).attr("data-toggle");
+      	var entityId = this.getAttribute("data-id");
+      
+        var $tab = fn_tab_open({
+          	name: "tab_ent_" + entityId,
+          	icon: "fa-table",
+          	title: this.innerText
+        });
+
+      	IFrameService.loadFrame("/forms/inpaas.iam.forms.auth_client.list", "tab_api_clients", "0", $tab); 
+    }*/
+  
+  	function fn_tree_addnode($tree, nodeIcon, nodeTitle, fnLoader) {
+      	var $node = $("&lt;li&gt;", { "class": "closed empty" })
+        	.append("&lt;a href=\"#\" data-toggle=\"tree-node\"&gt;&lt;i class=\"fa fa-fw fa-minus-square-o nodeicon\"&gt;&lt;/i&gt;&lt;i class=\"fa fa-fw " + nodeIcon + "\"&gt;&lt;/i&gt; " + nodeTitle + "&lt;/a&gt;&lt;ul&gt;&lt;/ul&gt;")
+        	.appendTo($tree);
+      
+      	return $node;
+    }
+  
+  	function fn_tree_addleaf($node, nodeIcon, nodeTitle, data) {      	
+      	var $link = $("&lt;a&gt;", { "href": "#" }).html("&lt;i class=\"fa fa-fw " + nodeIcon + "\"&gt;&lt;/i&gt; " + nodeTitle + "");
+      
+      	$link.attr("data-icon", nodeIcon);
+      	for(var k in data) {
+          	$link.attr("data-" + k, data[k]);
+        }
+      
+      	return $("&lt;li&gt;", { "class": "leaf" }).append($link).appendTo($node) ;
+    }
+  
+  	function fn_tree_addnodelist($node, nodeIcon, opts, data) {
+        var $ul = $("&lt;ul&gt;").appendTo($node);
+      	if (!data || data.length == 0) return;
+          
+        $node.removeClass("empty");
+        for (var j in data) {
+            var obj = data[j];
+          	opts["id"] = obj.id;
+          
+          	fn_tree_addleaf($ul, nodeIcon, obj.name || obj.key, opts);
+        }
+
+    }  
+  
+  	function fn_tree_searchnodes() {
+      	
+      	var $tree = $(".app-tree");
+      
+      	var term = $tree.attr("data-search");
+      	if (!term) return;
+
+      	$.get("/api/studio/search?text=" + term).then(function(data) {
+
+            $tree.find(".treesearch").remove()
+            var $search = $("&lt;div class=\"treesearch\"&gt;&lt;span&gt;Search results:&lt;/span&gt;&lt;ul&gt;&lt;/ul&gt;&lt;/div&gt;").appendTo($tree).children("ul");
+
+            var $itens = $tree.find(".treevw ul");
+          	for(var k in data) {
+              	var $module = $("&lt;li&gt;&lt;a href=\"#\" data-toggle=\"tree-node\"&gt;&lt;i class=\"fa fa-fw fa-minus-square-o nodeicon\"&gt;&lt;/i&gt;&lt;i class=\"fa fa-fw fa-cube\"&gt;&lt;/i&gt; " + data[k].title + "&lt;/a&gt;&lt;ul&gt;&lt;/ul&gt;&lt;/li&gt;");
+              
+              
+              	var $ul = $module.children("ul");
+              
+              	if(data[k].sources) data[k].sources.forEach(function(item) {
+					fn_tree_addleaf($ul, "fa-file-code-o", item.name, 			{ "toggle": "open-source-tab", "id": item.id, "title": item.name, "name": item.name }).removeClass("leaf");                	
+                });
+              	if(data[k].forms) data[k].forms.forEach(function(item) {
+                  	fn_tree_addleaf($ul, "fa-object-ungroup", (item.name || item.title) + " (" + item.key + ")", 			{ "toggle": "open-form-tab", "id": item.id, "title": item.name, "name": item.name, "type": item.type }).removeClass("leaf");                	                  
+                });
+              	if(data[k].templates) data[k].templates.forEach(function(item) {
+					fn_tree_addleaf($ul, "fa-file-o", item.name + " (" + item.key + ")", 			{ "toggle": "open-template-tab", "id": item.id, "title": item.name, "name": item.name }).removeClass("leaf");                	
+                });
+              	if(data[k].entities) data[k].entities.forEach(function(item) {
+					fn_tree_addleaf($ul, "fa-table", item.name, 			{ "toggle": "open-entity-tab", "id": item.id, "title": item.name, "name": item.name }).removeClass("leaf");                	
+                });
+
+              
+              
+              	$search.append($module);
+              
+              
+            }
+                
+            
+        });
+
+      	/*
+        $.extend($.expr[':'], { 'containsi': function(elem, i, match, array) {
+          	return (elem.innerHTML || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) &gt;= 0;
+        }});
+        var sterm = term.replace(/ /g, "'):containsi('");
+      
+      	$tree.find(".treesearch").remove()
+        var $search = $("&lt;div class=\"treesearch\"&gt;&lt;span&gt;Search results:&lt;/span&gt;&lt;ul&gt;&lt;/ul&gt;&lt;/div&gt;").appendTo($tree).children("ul");
+      	
+		var $itens = $tree.find(".treevw ul");
+        $itens.find("li.leaf:containsi('" + sterm + "')").each(function(e) {
+          	$search.append( $(this).clone() );
+        });
+        */
+    }
+  
+  	var fn_delayed_searchnodes = debounce(fn_tree_searchnodes, 200);
+  
+  	function fn_search_keyup(e) {
+      
+      	var searchFor;
+      	var instantly = false;
+      	var $tree = $("[data-toggle=tree-data]");
+      
+      	if (e.which==27) $(this).val("");
+      
+      	if (e.which == 13 || e.which == 27) {
+			e.preventDefault();
+          	e.stopPropagation();
+          
+          	$(this).blur();
+          
+          	instantly = true;
+        }
+      
+      	var sfor = $(this).val();
+      	if (sfor == "") {
+          	$tree.removeAttr("data-search");
+        } else {
+      		$tree.attr("data-search", $(this).val());
+        }
+      
+        if (instantly) {
+          	fn_tree_searchnodes.apply($tree, [ e ]);
+          
+        } else {
+          	fn_delayed_searchnodes.apply($tree, [ e ]);
+          
+        }
+    }
+    
+
+  
+  	function fn_tab_open(tab) {
+      	var $tab;
+      
+      	if ($("[data-target='#" + tab.name + "']").length == 0) {
+          	$("&lt;a&gt;", { 
+              	"href":"#", 
+              	"data-target": "#"+tab.name,
+              	"aria-controls": tab.name, 
+              	"role": "tab", 
+              	"data-toggle": "tab" 
+            }).html("&lt;i class=\"fa fa-fw " + tab.icon + "\"&gt;&lt;/i&gt; &lt;span class=\"tab-title\"&gt;" + tab.title + "&lt;/span&gt;")
+              .append("&lt;a href=\"#\" class=\"close-tab\" data-toggle=\"close-tab\"&gt;x&lt;/a&gt;")
+              .appendTo( $("&lt;li&gt;").appendTo("#collapsed") )
+           	  .tooltip({ "container": ".nav-tabs", "placement": "bottom", "title": tab.title, "trigger": "hover" })
+          
+          	$tab = $("&lt;div role=\"tabpanel\" class=\"tab-pane\" id=\"" + tab.name + "\"&gt;&lt;/div&gt;").appendTo(".tab-content");
+          
+          	// &lt;iframe src=\"" + tab.url + "\"&gt;&lt;/iframe&gt;
+        } else {
+          	$tab = $("#" + tab.name);	
+          
+        }
+      
+		$("[data-target='#" + tab.name + "']").tab('show');
+      
+      	// after stuff has been done
+      	$("[role=tablist]").collapseMe();
+        
+      	return $tab;
+    }
+  
+  	window.OpenTab = fn_tab_open;
+  
+  	function fn_tab_close(e) {
+      	e.preventDefault();
+      	e.stopPropagation();
+      	
+      	var $li = $(this).closest("li");
+      	var $target = $( $li.find("[data-toggle=tab]").data("target") );
+      
+      	$li.find("a").tooltip("destroy");
+      	$li.prev().find("a").tab('show');
+      
+      	$target.remove();
+      	$li.remove();
+      
+      	$("#collapsed").find("li").first().insertBefore( $("[role=tablist]").find(".lastTab") );
+      
+      	if ( $("#collapsed").find("li").length == 0) {
+          	$("[role=tablist]").find(".lastTab").css("display", "none");
+        }
+      
+      	// $("[role=tablist]").collapseMe();
+      
+      	return false;
+    }
+  
+  	function fn_tab_click(e) {
+      	// console.log("fn_tab_shown::" + e.target);
+      	var $tab = $(this);
+      	var $nav = $("[role=tablist]");
+      
+      	if ( $tab.is("#collapsed li &gt; a") ) {
+          	$tab.parent("li").insertAfter( $nav.children("li:first-child") );
+          	$nav.find(".lastTab").prev().appendTo( $("#collapsed") );
+          
+        }
+      
+      	// $("[role=tablist]").collapseMe();
+
+    }
+  
+	function fn_tab_dblclick(e) {
+      	e.preventDefault();
+      	
+      	$("body").toggleClass("fullscreen");
+		
+      	var fullscreen = $("body").is(".fullscreen");
+      
+        $("body").css("padding-left", fullscreen?"0px":"350px");
+        $(".sidebar").css("left", fullscreen?"-400px":"0px");      
+      	$(".sidebar, .panel-search .input-text").css("width", "350px");      
+    }
+
+
+  	function fn_tab_shown(e) {
+      
+    }  
+
+
+  	function fn_editortab_change(tp, id) {
+		var $tab = $("a[data-target='#tab_" + tp + "_" + id + "']");
+      	$tab.toggleClass("editor-changed", true);
+    }
+  
+  	function fn_editortab_close(tp, id) {
+      	var $tab = $("a[data-target='#tab_" + tp + "_" + id + "']"); 	      
+      	var $panel = $("#tab_" + tp + "_" + id);
+      
+      	$tab.remove();
+      	$panel.remove();
+    }
+  
+  	function fn_editortab_save(tp, id) {
+		var $tab = $("a[data-target='#tab_" + tp + "_" + id + "']");
+      	$tab.toggleClass("editor-changed", false);
+    }
+  
+    $.fn.hasOverflow = function() {
+        var _elm = $(this)[0];
+        var _hasScrollBar = false; 
+      
+        if ((_elm.offsetHeight &lt; (_elm.scrollHeight - 10)) || (_elm.offsetWidth &lt; (_elm.scrollWidth - 10))) {
+            _hasScrollBar = true;
+        }
+        return _hasScrollBar;
+    };  
+
+    $.fn.collapseMe = function(opts){
+      	var $this = $(this);
+      
+      	var $collapsed = $("#collapsed");
+		var $lastTab = $this.find(".lastTab");
+      
+      	$collapsed.children('li').insertBefore( $lastTab );
+      	$lastTab.css("display", "none");
+      
+      	if ($this.hasOverflow() ) {
+      		$lastTab.css("display", "inline-block");
+
+          	var lastCount;
+          	while($this.hasOverflow()) {
+              
+                var children = $this.children("li:not(:last-child)");
+                var count = children.size();
+
+                if (count &lt;= 1 || count === lastCount) return;
+              	lastCount = count;	
+              
+              	if ( $(children[count-1]).is(".active") ) 
+                  	$(children[count-1]).insertAfter( $this.children("li:first-child") );
+                else   
+                	$(children[count-1]).prependTo( $collapsed );
+
+            }
+          
+          	$lastTab.removeClass("active");
+        }
+
+    }
+
+
+  
+  	$(document).ready(function() {      	
+
+      	$("body").on("click", "[data-toggle=tree-data] [data-toggle=tree-node]", fn_toggle_treenode);      
+      	$("body").on("keyup", "[data-toggle=tree-search]", fn_search_keyup);
+      
+      	
+      	$("body").on("click", "[data-toggle=open-entity-tab]", fn_open_entity_tab);
+      	$("body").on("click", "[data-toggle=open-source-tab]", fn_open_source_tab);
+      	$("body").on("click", "[data-toggle=open-template-tab]", fn_open_template_tab);
+      	$("body").on("click", "[data-toggle=open-queues-tab]", fn_open_queues_tab);
+      	$("body").on("click", "[data-toggle=open-form-tab]", fn_open_form_tabevent);
+
+      	$("body").on("click", "[data-toggle=open-iframe-tab]", fn_open_iframe_tab);
+      
+		$("body").on("click", "[data-toggle=new-module-item][data-type=entity]", fn_new_entity);
+      	$("body").on("click", "[data-toggle=new-module-item][data-type=form]", fn_new_form);
+      	$("body").on("click", "[data-toggle=new-module-item][data-type=template]", fn_new_template);
+      	$("body").on("click", "[data-toggle=new-module-item][data-type=source]", fn_new_source);
+      	$("body").on("click", "[data-toggle=new-module-item][data-type='http-service']", fn_new_httpservice);
+      
+      	$("body").on("click", "[data-toggle=new-module-item][data-type=app]", fn_new_app);
+      	$("body").on("click", "[data-toggle=new-module-item][data-type=module]", fn_new_module);
+      
+      	$("body").on("click", "[data-toggle=import-module-item]", fn_import_package);
+      	$("body").on("click", "[data-toggle=release-app]", fn_release_app);
+      
+      	//$("body").on("click", "[data-toggle=open-client]", fn_open_client);
+      	$("body").on("click", "[data-toggle=open-module]", fn_open_module);
+      
+      	$("body").on("click", "[data-toggle=close-tab]", fn_tab_close);      
+        $("body").on("click", "[data-toggle=tab]", fn_tab_click);       
+        $("body").on("dblclick", "[data-toggle=tab]", fn_tab_dblclick);       
+      
+      	$("body").on("click", "[data-toggle]", function(e) { e.preventDefault();  });
+      
+      
+      	$("body").on("editorchange", fn_editortab_change);
+
+      	window.onEditorClose = fn_editortab_close;
+      	window.onEditorChange = fn_editortab_change;
+      	window.onEditorSave = fn_editortab_save;
+
+      	// document.addEventListener("editorchange", fn_editortab_change);
+      
+		$.getScript("/api-controller/inpaas.devstudio.rest.studio", fn_refresh_apps)
+
+     
+    });
+  	
+  
+
+})(jQuery, window);
+
+(function($, global) {    	
+  	function fn_service_factory() {
+      	return this;
+    }
+
+	function fn_load_source(sourceId, container) {
+      	if ( container.find("[data-source-id='" + sourceId + "']").length &gt; 0 ) return;
+      
+      	$("&lt;iframe&gt;", { 
+          	"data-editor-type": "source", 
+          	"data-id": sourceId, 
+          	"src": "/forms/inpaas.devstudio.forms.sourceeditor/" + sourceId 
+        }).appendTo(container.addClass("with-iframe"));
+      
+    }
+  
+  	var modalCount=0;
+  
+  	function fn_new_source() {
+      	$.ajax({ 
+          	"url": "/forms/inpaas.devstudio.forms.sourcetemplate", 
+          	"cache": false, 
+          	"type": "GET",
+          	"success": function(data, textStatus, jqXHR) {
+              	var formHtml = $(data)[0].innerHTML;
+              
+              	var moduleKey = $("body").attr("data-module-key");
+              	var moduleId = $("body").attr("data-module-id");
+              	formHtml = formHtml.replace("#modulekey#", moduleKey).replace("#moduleid#", moduleId);
+              
+              	window.top.showModal("&lt;i class=\"fa fa-fw fa-code\"&gt;&lt;/i&gt; New Source", formHtml, fn_create_source); 
+              
+        	}
+		})
+    }
+
+    function fn_create_source(container, source) {
+		if (!source["type"]) {
+          	alert("Select the source type!");
+          	return false;
+        }
+      
+      	RESTService("inpaas.devstudio.rest.studio").createSource(source, function(data) {
+          	if (data["error"]) 
+              	return $.notify(data.message, { autoHide: false, className: 'error' });
+              	
+          	container.modal("hide");
+
+        	var $tab = OpenTab({
+          		name: "tab_source_" + data["id"],
+          		icon: "fa-code",
+          		title: data["name"]
+        	});
+      
+      		fn_load_source(data["id"], $tab);            
+        });
+            
+      	// console.log(data);
+	}
+  
+  	fn_service_factory.prototype.loadSource = fn_load_source;
+	fn_service_factory.prototype.newSource = fn_new_source;
+  
+  	global["SourceService"] = new fn_service_factory();  
+})(jQuery, window);
+
+(function($, global) {
+  	function fn_service_factory() {
+      	return this;
+    };
+
+  function fn_load_template(formId, container) {       
+      	if ( container.find("[data-form-id='" + formId + "']").length &gt; 0 ) return;
+          $("&lt;iframe&gt;", { 
+            "data-editor-type": "form", 
+            "data-id": formId,
+            "src": "/forms/inpaas.devstudio.forms.Createtemplate/" + formId 
+          }).appendTo(container.addClass("with-iframe"));  	
+    };
+  
+  	function fn_create_template(container, template) {
+        RESTService("inpaas.devstudio.rest.studio").createTemplate({"key" : template.key, "name" : template.name, "moduleId" : template.module}, function(data) {
+          if (data["error"]) 
+            return $.notify(data.message, { autoHide: false, className: 'error' });
+
+          	container.modal("hide");
+			//console.log(data);
+            var $tab = OpenTab({
+              name: "tab_form_" + data["id"],
+              icon: "fa-tv",
+              title: data["name"]
+            });
+
+            fn_load_template(data["id"], $tab);            
+        });
+	};
+  
+	function fn_new_template() {
+    	$.ajax({ 
+            "url": "/forms/inpaas.devstudio.forms.templateform",
+            "cache": false, 
+            "type": "GET",
+            "success": function(data, textStatus, jqXHR) {
+                var templateHtml = $(data)[0].innerHTML;
+
+                var moduleKey = $("body").attr("data-module-key");
+                var moduleId = $("body").attr("data-module-id");
+
+                templateHtml = templateHtml.replace("#modulekey#", moduleKey).replace("#moduleid#", moduleId);
+				
+                window.top.showModal("&lt;i class=\"fa fa-fw fa-tv\"&gt;&lt;/i&gt; New Template", templateHtml, fn_create_template); 
+            }
+        });
+    };
+  
+	fn_service_factory.prototype.loadTemplate = fn_load_template;
+  	fn_service_factory.prototype.newTemplate = fn_new_template;
+  
+  	global["TemplateService"] = new fn_service_factory();  
+  
+})(jQuery, window);
+
+(function($, global) {
+  	function fn_service_factory() {
+      	return this;
+    };
+
+  function fn_load_queue(formId, container) {       
+      	if ( container.find("[data-form-id='" + formId + "']").length &gt; 0 ) return;
+          $("&lt;iframe&gt;", { 
+            "data-editor-type": "form", 
+            "data-id": formId,
+            "src": "/forms-v2/inpaas.mqs.form-queues/" + formId 
+          }).appendTo(container.addClass("with-iframe"));  	
+    };
+  
+	fn_service_factory.prototype.loadQueue = fn_load_queue;
+  
+  	global["QueueService"] = new fn_service_factory();  
+  
+})(jQuery, window);
+
+(function($, global) {    	
+  	function fn_service_factory() {
+      	return this;
+    }
+
+	function fn_load_form(formId, container, type) {
+      	if(formId == "new"){
+        	$("&lt;iframe&gt;", { 
+              "data-editor-type": "form", 
+              "data-id": formId,
+              "src": "/forms/studiov2.forms.main#/forms/"+ formId +"/view-edit"
+              //"src": "/forms/inpaas.devstudio.forms.CreateFormv2/" + formId
+          	}).appendTo(container.addClass("with-iframe"));
+        }
+      
+      	if ( container.find("[data-form-id='" + formId + "']").length &gt; 0 ) return;
+      	
+        if(type == "v2") {
+          $("&lt;iframe&gt;", { 
+            "data-editor-type": "form", 
+            "data-id": formId,
+            "src": "/forms/studiov2.forms.main#/forms/"+ formId +"/view-edit"
+            //"src": "/forms/inpaas.devstudio.forms.CreateFormv2/" + formId
+          }).appendTo(container.addClass("with-iframe"));  	
+        } else {
+          $("&lt;iframe&gt;", { 
+              "data-editor-type": "form", 
+              "data-id": formId, 
+              "src": "/forms/inpaas.studio.form.formdesign/" + formId 
+          }).appendTo(container.addClass("with-iframe"));
+        };
+    };
+  
+  	function fn_new_form() {
+      	$.ajax({ 
+          	"url": "/forms/inpaas.devstudio.forms.formtemplate", 
+          	"cache": false, 
+          	"type": "GET",
+          	"success": function(data, textStatus, jqXHR) {
+              	var formHtml = $(data)[0].innerHTML;
+              
+              	var moduleKey = $("body").attr("data-module-key");
+              	var moduleId = $("body").attr("data-module-id");
+              	formHtml = formHtml.replace("#modulekey#", moduleKey).replace("#moduleid#", moduleId);
+              
+              	window.top.showModal("&lt;i class=\"fa fa-fw fa-tv\"&gt;&lt;/i&gt; New Form", formHtml, fn_create_form); 
+              
+        	}
+		})
+    }
+  
+    function fn_create_form(container, form) {
+      	if (!form.type) return;
+      
+      	if(form.type == "v1"){
+    
+          RESTService("inpaas.devstudio.rest.studio").createForm(form, function(data) {
+              if (data["error"]) 
+                  return $.notify(data.message, { autoHide: false, className: 'error' });
+
+              container.modal("hide");
+
+              var $tab = OpenTab({
+                  name: "tab_form_" + data["id"],
+                  icon: "fa-tv",
+                  title: data["name"]
+              });
+
+              fn_load_form(data["id"], $tab, form.type);            
+          });
+        } else {
+          	 RESTService("inpaas.devstudio.rest.studio").createFormV2({"key" : form.key, "name" : form.name, "moduleId" : form.module}, function(data) {
+             //console.log(data) 
+             if (data["error"]) 
+                  return $.notify(data.message, { autoHide: false, className: 'error' });
+
+              container.modal("hide");
+
+              var $tab = OpenTab({
+                  name: "tab_form_" + data["id"],
+                  icon: "fa-tv",
+                  title: data["name"]
+              });
+				
+              
+              fn_load_form(data.id, $tab, form.type);            
+          });
+        }
+	}
+
+  	fn_service_factory.prototype.loadForm = fn_load_form;
+  	fn_service_factory.prototype.newForm = fn_new_form;
+  
+  	global["FormService"] = new fn_service_factory();  
+})(jQuery, window);
+
+(function($, global) {    	
+  	function fn_service_factory() {
+      	return this;
+    }
+  
+  	function fn_new_app() {
+      	$.ajax({ 
+          	"url": "/forms/inpaas.devstudio.forms.newapp", 
+          	"cache": false, 
+          	"type": "GET",
+          	"success": function(data, textStatus, jqXHR) {
+              	var formHtml = $(data)[0].innerHTML;
+              
+              	window.top.showModal("&lt;i class=\"fa fa-fw fa-asterisk\"&gt;&lt;/i&gt; New Application Project", formHtml, fn_create_app);
+              
+        	}
+		});
+    }
+  
+  	function fn_create_app(container, application) {
+      	container.find("[data-trigger=modal-confirm]").loading();
+		RESTService("inpaas.devstudio.rest.studio").createApp(application, function(data) {
+			if (data["error"]) {
+              container.find("[data-trigger=modal-confirm]").loading("error");
+              return $.notify(data.message, { autoHide: false, className: 'error' });
+            }
+          	
+          	container.modal("hide");
+          	$.notify(data.message, { autoHide: true, className: 'success' })
+
+          	var moduleId = data["data"]["modules"][0]["id"];
+          	var moduleName = data["data"]["modules"][0]["title"];
+
+          	global.openModule(moduleId, moduleName);
+		});
+    }
+  
+  	function fn_new_module() {
+      	$.ajax({ 
+          	"url": "/forms/inpaas.devstudio.forms.newmodule", 
+          	"cache": false, 
+          	"type": "GET",
+          	"success": function(data, textStatus, jqXHR) {
+              	var formHtml = $(data)[0].innerHTML;
+
+              	RESTService("inpaas.devstudio.rest.studio").findApps(function(data) {
+                  	var moduleKey = $("body").attr("data-module-key");
+                  	var appId = $("a[data-toggle='open-module'][data-key='"+moduleKey+"']").parent().prev().attr("data-id");
+                  	var $wrapper = $("&lt;div /&gt;");
+                  	$.each(data, function(i, value) {
+                      	var opt = $('&lt;option&gt;').val(value.id).text(value.title).attr("data-key", value.key);
+                      	if(value.id == appId) opt.attr("selected", "selected");
+                      	$wrapper.append(opt);
+                    });
+                  	var newHtml = formHtml.replace("#applications#", $wrapper.html());
+					window.top.showModal("&lt;i class=\"fa fa-fw fa-cube\"&gt;&lt;/i&gt; New Module", newHtml, fn_create_module);
+                });
+        	}
+		});
+    }
+  
+  	function fn_create_module(container, mod) {
+
+      	container.find("[data-trigger=modal-confirm]").loading();
+		RESTService("inpaas.devstudio.rest.studio").createModule(mod, function(data) {
+			if (data["error"]) {
+              container.find("[data-trigger=modal-confirm]").loading("error");
+              return $.notify(data.message, { autoHide: false, className: 'error' });
+            }
+          	
+          	container.modal("hide");
+          	$.notify(data.message, { autoHide: true, className: 'success' })
+
+          	var moduleId = data["data"]["id"];
+          	var moduleName = data["data"]["title"];
+
+          	global.openModule(moduleId, moduleName);
+		});
+    }
+  
+  	fn_service_factory.prototype.newApp = fn_new_app;
+  	fn_service_factory.prototype.newModule = fn_new_module;
+  
+  	global["AppService"] = new fn_service_factory();  
+})(jQuery, window);
+
+(function($, global) {    	
+  	function fn_service_factory() {
+      	return this;
+    }
+
+  	function fn_import_package() {
+      	$.ajax({ 
+          	"url": "/forms/inpaas.devstudio.forms.packageimporter", 
+          	"cache": false, 
+          	"type": "GET",
+          	"success": function(data, textStatus, jqXHR) {
+              	var formHtml = $(data)[0].innerHTML;
+              
+              	var moduleKey = $("body").attr("data-module-key");
+              	var moduleId = $("body").attr("data-module-id");
+              	formHtml = formHtml.replace("#moduleid#", moduleId);
+              
+              	window.top.showModal("&lt;i class=\"fa fa-fw fa-upload\"&gt;&lt;/i&gt; Import Package", formHtml, fn_upload_package); 
+              
+        	}
+		});
+    }
+  
+    function fn_upload_package(container, pkg) {
+      	container.find("[data-trigger=modal-confirm]").loading();
+      	RESTService("inpaas.devstudio.rest.studio").importPackage(pkg, function(data, status, jqXHR) {
+          
+          	data = jqXHR.responseJSON || data;
+          	if (data.error) {
+              	container.find("[data-trigger=modal-confirm]").loading("error");
+              	return $.notify(data.message, { autoHide: false, className: 'error' });
+            }
+          	container.modal("hide");
+          	$.notify("message.studio.package.imported", { autoHide: true, className: 'success' });
+        });
+	}
+
+  	fn_service_factory.prototype.importPackage = fn_import_package;
+  
+  	global["PackageService"] = new fn_service_factory();  
+})(jQuery, window);
+
+(function($, global) {    	
+  	function fn_service_factory() {
+      	return this;
+    }
+
+	function fn_load_frame(frameUrl, frameType, frameId, container) {
+      	if ( container.find("[data-" + frameType.toLowerCase() + "-id='" + frameId + "']").length &gt; 0 ) return;
+      
+      	$("&lt;iframe&gt;", { 
+          	"data-editor-type": frameType, 
+          	"data-id": frameId, 
+          	"src": frameUrl
+        }).appendTo(container.addClass("with-iframe"));
+      
+    }
+
+  	fn_service_factory.prototype.loadFrame = fn_load_frame;
+  
+  	global["IFrameService"] = new fn_service_factory();  
+})(jQuery, window);
+
+
+(function($, global) {
+  	global.fn_get_model = function(modelName) {
+      	return $("[data-model='" + modelName + "']").clone().removeAttr("data-model");
+    }
+  
+  	global.fn_load_binds = function(data, el) {
+      	el.find("[data-bind]").each(function(index, el) {
+            if(el.tagName == "TD" || el.tagName == "SPAN" || el.tagName == "H3" || el.tagName == "PRE") { 
+              	el.innerText = fn_eval_text(data, el);
+            } else if (el.tagName == "INPUT" &amp;&amp; el.type == "checkbox") {
+              	el.checked = fn_eval_bool(data, el);
+            } else {
+              	el.value = fn_eval_text(data, el);;
+            }
+        });
+      
+      	return el;
+    }
+
+  	global.fn_load_tbody = function(data, container) {
+      	var $tbody = container.find("tbody").html("");	
+      	var $model = container.find("[data-model]");
+      
+      	if (data==null || data.length ==0) {
+          	container.remove();	
+          	return;
+        }
+      	
+      	for (var k in data) {
+          	$tbody.append(fn_load_binds( data[k], $model.clone().removeAttr("data-model") ));
+          	
+        }
+    }                                    
+                                    
+  	global.fn_eval_text = function(data, el) {
+      	var boundName = el.getAttribute("data-bind");
+      	var options = el.getAttribute("data-options");
+
+      	var textVal = data[boundName];
+      	if (options) textVal = fn_eval_options(textVal, options.split("|"));
+      
+      	return textVal;
+    }
+  
+  	global.fn_eval_options = function(val, options) {
+		if (val === true) {
+          	return options[0];
+          
+		} else if (val === false) {
+          	if (options[1])
+          		return options[1];
+          	else 
+              	return "";
+          
+        } else {
+          	return val;
+          
+        }
+    }
+  
+  	global.fn_eval_bool = function(data, el) {
+      	var boundName = el.getAttribute("data-bind");
+      
+      	return data[boundName];
+    }  
+})(jQuery, window);
+
+(function($, global) {
+  
+  	var urlPattern = /^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,}))\.?)(?::\d{2,5})?(?:[/?#]\S*)?$/i;
+
+  	function validateURL(e) {
+      	e.preventDefault();
+      	
+      	var $modal = $(this).closest(".modal");
+      	
+      	var serviceType = $modal.find("[name='httpClientServiceType']").val();
+      	var serviceUrl = $modal.find("[name='httpClientServiceUrl']").val();
+      	var moduleId = $modal.find("[name='moduleId']").val();
+      
+      	if (!urlPattern.test(serviceUrl)) {
+          	$modal.find("[name='httpClientServiceUrl']").css("border-color", "#800");
+          	$modal.find("[name='httpClientServiceUrl']").after("&lt;span class=\"label label-danger\"&gt;Invalid URL&lt;/span&gt;");
+          	return;
+          
+        } else {
+          	$modal.find("[name='httpClientServiceUrl']").css("border-color", null);
+          	$modal.find("[name='httpClientServiceUrl']").next("span").remove();
+        }
+      
+
+            
+      	RESTService("inpaas.httpclient.rest.http-client").importHTTPClient({
+          	"module": moduleId,
+          	"type": serviceType,
+          	"url": serviceUrl
+        }, function(data) {
+          	if (data["error"]) {
+              	$modal.find(".alert").remove();
+              	$modal.find(".modal-body").append( $("&lt;div&gt;", { "class": "alert alert-danger", "html": "&lt;b&gt;HTTP Service Import raised an exception&lt;/b&gt;&lt;br/&gt;" + data.message }) );
+              	return ;
+                
+            }
+              	
+        	var $tab = OpenTab({
+          		name: "tab_httpservice_" + data["id"],
+          		icon: "fa-globe",
+          		title: data["name"]
+        	});
+
+          	IFrameService.loadFrame("/forms/inpaas.httpclient.forms.service/" + data.id, "httpservice", data.id, $tab);                
+			window.top.$(".modal").modal("hide");
+          
+        })
+      
+    }
+  
+	function importURL() {
+      	
+    }
+  
+  	var scope = function() {
+      	return this;
+    };
+  
+  	function openHTTPClientTab(serviceId) {
+      	
+    }
+  
+  	scope.prototype.onload = function($modal) {
+      	this.$modal = $modal;
+      
+      	$modal.on("click", "[role='httpclient-validate']", debounce(validateURL, 500, true));
+      	$modal.on("click", "[role='httpclient-import']", debounce(importURL, 500, true));
+      
+      	$modal.find("[name='httpClientServiceType'] option[value='']").remove();
+      	$modal.find("[role='httpclient-import']").attr("disabled", "disabled");
+    }
+    
+    
+    
+    global["HTTPClientImport"] = scope;
+    
+})(jQuery, window);
+
+(function($, document) {
+
+	var i = 0;
+    var dragging = false;
+    $('.col-resize').mousedown(function(e){
+		e.preventDefault();
+
+		dragging = true;
+		var main = $('.col-resize');
+		var ghostbar = $('&lt;div&gt;', { 
+			"id": "ghostbar",
+			"css": {
+				"left": e.pageX+2
+			}
+		}).appendTo('body');
+      
+      	$('&lt;div&gt;', { "id": "ghostoverlay" }).appendTo('body');
+
+        $(document).mousemove(function(e){
+          	ghostbar.css("left",e.pageX+2);
+       });
+
+    });
+
+    $(document).mouseup(function(e){
+		if (!dragging) return;
+		
+      	$('#ghostbar').remove();
+      	$('#ghostoverlay').remove();
+      
+		$(document).unbind('mousemove');
+		dragging = false;
+         
+     	var w = e.pageX;
+      	if (w &gt; 800) w = 800;
+      	if (w &lt; 300) w = 300;
+      
+      	$("body").css("padding-left", w + "px");
+      	$(".sidebar, .panel-search .input-text").css("width", w + "px");
+      	// cm.setSize(null, "100%");
+      
+      	console.log(w);
+    });  
+	
+})(jQuery, document);</source-js>
+</form>
