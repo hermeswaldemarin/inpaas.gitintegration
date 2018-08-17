@@ -103,7 +103,7 @@
   }
 
   function sendZipToSourceControl(moduleId, comment) {
-    return fn_insert_sc(moduleId, "ZIP", comment);
+    return fn_insert_sc(moduleId, "ZIP", comment, moduleId);
   }
 
 
