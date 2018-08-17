@@ -48,10 +48,10 @@
         packageType = PackageTypes.FORM;    
       }
 
-      var returnedObject = PackageTypes.SOURCE_CODE.getPacker(scriptContext).pack(module, objectId);
-      var file = PackageTypes.SOURCE_CODE.getMarshaller().apply(returnedObject);
-      var name = PackageTypes.SOURCE_CODE.getFileName(returnedObject);
-      var group = PackageTypes.SOURCE_CODE.getGroup();
+      var returnedObject = packageType.getPacker(scriptContext).pack(module, objectId);
+      var file = packageType.getMarshaller().apply(returnedObject);
+      var name = packageType.getFileName(returnedObject);
+      var group = packageType.getGroup();
 
       if(group != null) {
         fileName += group + "/" + name;
